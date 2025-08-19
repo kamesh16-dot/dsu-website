@@ -38,30 +38,33 @@ const StudentLife = () => {
   ];
 
   const activities = [
+    
+
     {
-      name: 'Technical Symposiums',
-      description: 'Annual tech fest featuring coding competitions, robotics challenges, and innovation showcases',
-      image: 'https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      participants: '2000+'
-    },
+  "name": "Sports & Activities",
+  "description": "Engaging events including inter-college tournaments, athletics, indoor & outdoor games, and fitness programs",
+  "image": "https://www.dsuniversity.ac.in/images/Sports_Act-04.jpg",
+ 
+},
     {
-      name: 'Industry Connect',
-      description: 'Regular industry visits, guest lectures, and networking sessions with leading professionals',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      participants: '500+'
-    },
+  "name": "campus",
+  "description": "Modern academic blocks and administrative buildings designed with smart architecture, spacious classrooms, and eco-friendly infrastructure",
+  "image": "https://www.dsuniversity.ac.in/infra/campus-img-03.jpg",
+  "participants": "5000+"
+}
+,
     {
       name: 'Innovation Labs',
       description: 'Student-led research projects and startup incubation programs with mentorship support',
-      image: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      image: 'https://www.dsuniversity.ac.in/infra/lab4.jpg',
       participants: '150+'
     },
     {
-      name: 'Cultural Events',
-      description: 'Vibrant cultural festivals, sports competitions, and community service programs',
-      image: 'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      participants: '1500+'
-    }
+  "name": "Learning Center",
+  "description": "Dedicated space for advanced learning with digital libraries, e-resources, research support, and collaborative study areas",
+  "image": "https://www.dsuniversity.ac.in/images/learn5.jpg"
+}
+
   ];
 
   const placementStats = [
@@ -144,7 +147,7 @@ const StudentLife = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-20"
         >
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Campus Activities</h3>
+          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Campus Activities & Life</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {activities.map((activity, index) => (
               <motion.div
@@ -161,9 +164,7 @@ const StudentLife = () => {
                     alt={activity.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                    {activity.participants}
-                  </div>
+                 
                 </div>
                 <div className="p-6">
                   <h4 className="text-lg font-bold text-gray-800 mb-3">{activity.name}</h4>
@@ -204,13 +205,7 @@ const StudentLife = () => {
             <p className="text-blue-100 mb-6">
               Our graduates are working at top companies worldwide, making significant contributions to technology and innovation.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors"
-            >
-              View Placement Report
-            </motion.button>
+           
           </div>
         </motion.div>
       </div>

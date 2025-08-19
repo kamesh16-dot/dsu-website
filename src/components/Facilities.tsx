@@ -14,15 +14,10 @@ const Facilities = () => {
       description: 'State-of-the-art computer lab with 200+ high-performance workstations, equipped with latest software for programming, simulation, and design.',
       features: ['High-speed Internet', 'Latest Software', '24/7 Access', 'Technical Support']
     },
-    {
-      name: 'Robotics & Automation Lab',
-      image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop',
-      description: 'Cutting-edge robotics laboratory featuring industrial robots, automation systems, and AI-driven machines for hands-on learning.',
-      features: ['Industrial Robots', 'IoT Integration', 'AI Systems', 'Research Projects']
-    },
+    
     {
       name: 'Electronics Design Center',
-      image: 'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop',
+      image: 'https://c8.alamy.com/comp/HTWB7B/interior-of-an-electronic-service-centre-HTWB7B.jpg',
       description: 'Modern electronics lab with PCB design tools, testing equipment, and fabrication facilities for circuit development and prototyping.',
       features: ['PCB Design Tools', 'Testing Equipment', 'Fabrication Units', 'Component Library']
     },
@@ -36,11 +31,11 @@ const Facilities = () => {
       name: 'Research & Development Center',
       image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop',
       description: 'Dedicated R&D facility supporting faculty and student research with advanced equipment and collaborative spaces.',
-      features: ['Research Equipment', 'Publication Support', 'Industry Collaboration', 'Grant Assistance']
+      features: ['Research Equipment', 'Grant Assistance']
     },
     {
       name: 'Central Library',
-      image: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop',
+      image: 'https://www.dsuniversity.ac.in/images/Library-Pic-02.jpg',
       description: 'Comprehensive digital and physical library with over 50,000 books, journals, and online resources for academic excellence.',
       features: ['Digital Resources', 'Study Spaces', 'Online Journals', 'Research Support']
     }
@@ -89,8 +84,8 @@ const Facilities = () => {
             
             {/* Content Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-              <h3 className="text-3xl font-bold mb-4">{facilities[activeIndex].name}</h3>
-              <p className="text-lg mb-4 opacity-90">{facilities[activeIndex].description}</p>
+              <h3 className=" sm:text-3xl  mb-39 text-3xl sm:text-white  font-extrabold text-blue-200 text-2xl  sm:mb-4 lg:mb-4 backdrop-blur-sm rounded-full px-9">{facilities[activeIndex].name}</h3>
+             
               
               <div className="flex flex-wrap gap-2">
                 {facilities[activeIndex].features.map((feature, index) => (
@@ -184,27 +179,8 @@ const Facilities = () => {
           ))}
         </motion.div>
 
-        {/* Virtual Tour CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-xl">
-            <h3 className="text-2xl font-bold mb-4">Experience Our Campus Virtually</h3>
-            <p className="mb-6 text-blue-100">
-              Take a 360° virtual tour of our facilities from the comfort of your home
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors"
-            >
-              Start Virtual Tour
-            </motion.button>
-          </div>
-        </motion.div>
+      
+       
       </div>
     </section>
   );

@@ -3,15 +3,17 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
 const Hero = () => {
+
+    const programs = [{ name: 'Explore the programs', href: '/program' }]
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background with parallax effect */}
       <div 
         className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`,
+          backgroundImage: `url('https://res.cloudinary.com/ds5x8xtyg/image/upload/v1755158720/bg-pic_mgrmbd.jpg')`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+         backgroundPosition: 'center',
           backgroundAttachment: 'fixed'
         }}
       >
@@ -44,21 +46,21 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto mt-5">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight mt-20"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            From <span className="text-yellow-400">Dreamer</span>
+           School  <span className="text-yellow-400">of Engineering  </span>
             <br />
-            to <span className="text-yellow-400">Engineer</span>
+           <span className="text-yellow-400">and</span> Technology
           </motion.h1>
 
           <motion.p 
@@ -67,8 +69,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Empowering innovators, leaders, and problem-solvers for a better tomorrow at 
-            Dhanalakshmi Srinivasan University's School of Engineering
+            At the School of Engineering, DSU, we believe engineers are not just problem-solvers — they are innovators, creators, and changemakers. Our programs are designed to blend strong theoretical foundations with  hands-on experience.
           </motion.p>
 
           <motion.div 
@@ -77,41 +78,31 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-yellow-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-600 transition-colors flex items-center gap-2"
-              onClick={() => document.querySelector('#programs')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Explore Programs
-              <ArrowRight className="h-5 w-5" />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all flex items-center gap-2"
-            >
-              <Play className="h-5 w-5" />
-              Watch Virtual Tour
-            </motion.button>
+            {/* Academic Programs */}
+                     <motion.div
+                       initial={{ opacity: 0, y: 20 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       transition={{ duration: 0.6, delay: 0.2 }}
+                     >
+                      
+                       <ul className="space-y-3">
+                         {programs.map((program, index) => (
+                           <li key={index}>
+                             <a
+                               href={program.href}
+                               className="text-white transition-colors hover:bg-blue-700 bg-yellow-500 p-5  rounded-full text-4 font-bold hover:translate-x-1 transform duration-200 block"
+                             >
+                               {program.name}
+                             </a>
+                           </li>
+                         ))}
+                       </ul>
+                     </motion.div>
+            
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <motion.div
-              className="w-1 h-3 bg-white rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
+       
       </div>
     </section>
   );

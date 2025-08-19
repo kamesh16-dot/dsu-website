@@ -42,12 +42,11 @@ const Admissions = () => {
   ];
 
   const importantDates = [
-    { event: 'Application Opens', date: 'March 1, 2024', status: 'completed' },
-    { event: 'Last Date to Apply', date: 'May 15, 2024', status: 'upcoming' },
-    { event: 'Entrance Exam', date: 'May 20-25, 2024', status: 'upcoming' },
-    { event: 'Results Declaration', date: 'June 5, 2024', status: 'upcoming' },
-    { event: 'Counseling Process', date: 'June 10-20, 2024', status: 'upcoming' },
-    { event: 'Classes Begin', date: 'July 1, 2024', status: 'upcoming' }
+    { event: 'Application Opens', date: 'March 1, 2026', status: 'upcoming' },
+    { event: 'Last Date to Apply', date: 'May 15, 2026', status: 'upcoming' },
+    { event: 'Entrance Exam', date: 'May 20-25, 2026', status: 'upcoming' },
+    { event: 'Results Declaration', date: 'June 5, 2026', status: 'upcoming' },
+    { event: 'Classes Begin', date: 'July 1, 2026', status: 'upcoming' }
   ];
 
   const eligibilityCriteria = {
@@ -249,34 +248,7 @@ const Admissions = () => {
               Apply now and take the first step towards your successful engineering career.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors flex items-center justify-center"
-              >
-                <FileText className="h-5 w-5 mr-2" />
-                Apply Online Now
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all flex items-center justify-center"
-              >
-                <Download className="h-5 w-5 mr-2" />
-                Download Brochure
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all flex items-center justify-center"
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                Contact Admissions
-              </motion.button>
-            </div>
+            
           </div>
         </motion.div>
       </div>

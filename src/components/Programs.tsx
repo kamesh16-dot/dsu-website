@@ -14,11 +14,60 @@ const Programs = () => {
       programs: [
         {
           name: 'Computer Science Engineering',
-          description: 'Cutting-edge curriculum covering AI, ML, Data Science, and Software Development',
+          description: 'Cutting-edge curriculum covering AI, ML, Data Science,IT, and Software Development',
           duration: '4 Years',
           highlights: ['Industry Projects', 'Internship Guaranteed', '100% Placement Support']
         },
+{
+          name: 'Artificial Intelligence & Data Science (AI & DS)',
+          description: 'Next-Gen Program in AI, Big Data, and Advanced Analytics',
+          duration: '4 Years',
+          highlights: ['Industry-Driven AI/DS Projects', 'internship with Top Tech & Analytics Firms', 'Specializations: NLP, Computer Vision, Deep Learning']
+        },
         {
+          name: 'Artificial Intelligence & Machine Learning (AI & ML)',
+          description: 'Next-Gen Program in AI, Big Data, and Advanced Analytics',
+          duration: '4 Years',
+          highlights: ['Industry-Driven AI/ML Projects', 'internship with Top Tech & Analytics Firms', 'Specializations: ML Computer Vision, Deep Learning, Cloud deploy']
+        },
+
+
+  {"name": "Internet of Things (IoT Engineering)",
+  "description": "End-to-end program covering IoT systems, edge computing, and smart automation",
+  "duration": "4 Years",
+  "highlights": [
+   
+    "Industry projects in Smart Cities/Agriculture/Healthcare",
+    "Guaranteed internship with IoT product companies",
+    "Specializations: Industrial IoT (IIoT), Embedded Systems, AI for Edge Devices",
+    
+  ],},
+     {
+  "name": "Information Technology (IT)",
+  "description": "Industry-aligned program in Cloud Computing, Cybersecurity, DevOps, and Enterprise Solutions",
+  "duration": "4 Years",
+  "highlights": [
+    
+    "Guaranteed internship with IT leaders",
+    
+    "Specializations: Cybersecurity, Full-Stack Development, IoT",
+    "Hackathons and CTF (Capture The Flag) competitions"
+  ],},    
+  {
+  "name": "Cyber Security Engineering",
+  "description": "Comprehensive program in ethical hacking, digital forensics, and enterprise security",
+  "duration": "4 Years",
+  "highlights": [
+    
+   
+    "Guaranteed internship with security firms or CERTs",
+    "Specializations: Cloud Security, OT/IoT Security, Threat Intelligence",
+    "CTF competitions & Hack the Box challenges"
+  ],},
+  
+  
+  
+  {
           name: 'Electronics & Communication',
           description: 'Advanced electronics, telecommunications, and embedded systems design',
           duration: '4 Years',
@@ -35,7 +84,19 @@ const Programs = () => {
           description: 'Sustainable construction, smart cities, and infrastructure development',
           duration: '4 Years',
           highlights: ['Green Building Design', 'Site Training', 'Government Projects']
-        }
+        },
+        {
+          name: 'BIO MEDICAL ENGINEERING',
+         description: 'Transforming healthcare through technology—one breakthrough at a time.Specializing in medical devices, biomaterials, and AI-powered diagnostics.',
+          duration: '4 Years',
+          highlights: ['Industry Projects', 'Internship Guaranteed', '100% Placement Support']
+        },
+        {
+          name: 'B.TECH AGRICULTURE',
+         description: 'Pioneering tech-driven solutions to feed the future sustainably.Focused on precision farming, agri-robotics, and climate-resilient crops',
+          duration: '4 Years',
+          highlights: ['Precision-Farming', 'Agri-Robotics', '100% Placement Support']
+        },
       ]
     },
     {
@@ -44,23 +105,43 @@ const Programs = () => {
       color: 'bg-green-500',
       programs: [
         {
-          name: 'Machine Learning & AI',
-          description: 'Advanced research in artificial intelligence and machine learning applications',
-          duration: '2 Years',
-          highlights: ['Research Thesis', 'Industry Collaboration', 'Publication Support']
-        },
-        {
-          name: 'VLSI Design',
-          description: 'Chip design, semiconductor technology, and embedded systems',
-          duration: '2 Years',
-          highlights: ['Industry Tools', 'Fab Lab Access', 'Placement Assistance']
-        },
-        {
-          name: 'Structural Engineering',
-          description: 'Advanced structural analysis, earthquake engineering, and smart materials',
-          duration: '2 Years',
-          highlights: ['Simulation Labs', 'Industry Projects', 'Research Papers']
-        }
+  "name": "M.Tech in Computer Science & Engineering",
+  "description": "Advanced specialization program combining rigorous theoretical foundations with cutting-edge applied research in computing",
+  "duration": "2 Years",
+  "highlights": [
+    "Thesis-based Research with Industry Collaboration",
+    "NVIDIA GPU Research Cluster Access",
+    "Specialized Tracks in Emerging Technologies",
+    "Patent Filing Support for Novel Algorithms",
+    "International Conference Funding"
+  ],},
+
+  {
+  "name": "M.Tech in Computer Science & Engineering (Big Data Analytics)",
+  "description": "Advanced program focusing on large-scale data processing, predictive modeling, and business intelligence systems",
+  "duration": "2 Years",
+  "highlights": [
+    "Petabyte-scale Hadoop/Spark Cluster",
+    "Industry Case Studies from Fortune 500 Companies",
+    "AWS/Azure Big Data Certification",
+    "Real-time Analytics Projects",
+    "Placement Assistance with Analytics Firms"
+  ],},
+  {
+  "name": "M.Tech in Computer Science & Engineering (Internet of Things)",
+  "description": "Specialized program focusing on IoT-enabled systems, smart devices, and intelligent connectivity across industries",
+  "duration": "2 Years",
+  "highlights": [
+    "IoT Labs with Smart Sensors & Embedded Systems",
+    "Industry Case Studies on Smart Cities & Healthcare",
+    "Cloud IoT Platforms (AWS IoT, Azure IoT, Google Cloud IoT)",
+    "Hands-on Projects in Smart Home & Industrial IoT",
+    "Placement Assistance with IoT & Embedded System Firms"
+  ]
+}
+
+
+
       ]
     },
     {
@@ -68,18 +149,99 @@ const Programs = () => {
       icon: Brain,
       color: 'bg-purple-500',
       programs: [
+       {
+  "name": "Biomedical Engineering Research",
+  "description": "Cutting-edge research at the intersection of engineering and healthcare technologies",
+  "duration": "3-5 Years",
+  "highlights": [
+    "Medical Device Development",
+    "Tissue Engineering Projects",
+    "NIH/NSF Funding Opportunities",
+    "Clinical Trial Collaborations",
+    "Biomedical Patent Support"
+  ]
+  
+},
         {
-          name: 'Engineering Research',
-          description: 'Independent research leading to breakthrough innovations and discoveries',
-          duration: '3-5 Years',
-          highlights: ['Research Funding', 'International Conferences', 'Patent Filing']
-        },
-        {
-          name: 'Interdisciplinary Studies',
-          description: 'Cross-domain research combining multiple engineering disciplines',
-          duration: '3-5 Years',
-          highlights: ['Collaborative Research', 'Industry Partnerships', 'Global Exposure']
-        }
+  "name": "Biotechnology Research Program",
+  "description": "Advanced research in genetic engineering, bioprocessing, and pharmaceutical development",
+  "duration": "3-5 Years", 
+  "highlights": [
+    "CRISPR Gene Editing Labs",
+    "Industrial Bioprocessing Facilities",
+    "FDA Approval Pathway Training",
+    "Biotech Startup Incubation",
+    "Global Pharma Collaborations"
+  ],},
+  {
+  "name": "Computer Science & Engineering Research",
+  "description": "Pioneering research in next-generation computing systems and intelligent technologies",
+  "duration": "3-5 Years",
+  "highlights": [
+    "AI/ML Research Clusters (NVIDIA DGX)",
+    "Quantum Computing Lab Access",
+    "Industry Cloud Credits (AWS/GCP/Azure)",
+    "Tech Transfer Patent Support",
+    "Top-Tier Conference Funding (NeurIPS/OSDI)"
+  ],},
+  {
+  "name": "Electronics and Communication Engineering",
+  "description": "Advanced program in electronic systems, communication technologies, and embedded solutions",
+  "duration": "4 Years",
+  "highlights": [
+    "VLSI and Chip Design Labs",
+    "5G/WiFi 6 Research Facilities",
+    "Industry-Standard DSP/FPGA Kits",
+    "Embedded Systems Projects",
+    "Telecom Industry Internships"
+  ],},
+
+  {
+  "name": "Electrical and Electronics Engineering",
+  "description": "Comprehensive program combining power systems, electronics, and cutting-edge automation technologies",
+  "duration": "4 Years",
+  "highlights": [
+    "Smart Grid and Renewable Energy Labs",
+    "Industrial Automation Projects",
+    "Power Electronics Prototyping",
+    "Siemens/ABB Certified Training",
+    "Energy Sector Internships"
+  ],},
+
+  {
+  "name": "Mechanical Engineering",
+  "description": "Integrated program combining classical mechanical systems with Industry 4.0 technologies",
+  "duration": "4 Years",
+  "highlights": [
+    "Industry 4.0 Automation Labs",
+    "SAE Collegiate Design Projects",
+    "Additive Manufacturing Center (3D Printing)",
+    "ANSYS/SolidWorks Certification",
+    "Automotive/Aerospace Industry Immersion"
+  ],},
+
+  {
+  "name": "Materials Science & Engineering",
+  "description": "Interdisciplinary program focusing on the design, discovery, and application of new materials",
+  "duration": "4 Years",
+  "highlights": [
+    "Nanomaterials Characterization Lab (TEM/SEM)",
+    "Computational Materials Design Center",
+    "Industry Collaborations in Advanced Materials",
+    "Materials Genome Initiative Projects",
+    "Semiconductor Materials Processing"
+  ],},
+  {
+  "name": "Nanoscience & Technology",
+  "description": "Cutting-edge interdisciplinary program exploring the quantum world of materials and devices at the nanoscale",
+  "duration": "4 Years",
+  "highlights": [
+    "Cleanroom Nanofabrication Facility (Class 100)",
+    "Atomic Force/Scanning Tunneling Microscopy",
+    "Quantum Materials Synthesis Lab",
+    "Industry Partnerships in Semiconductor Nanotech",
+    "Nano-Bio Interface Research"
+  ],}
       ]
     }
   ];
@@ -106,7 +268,7 @@ const Programs = () => {
   };
 
   return (
-    <section id="programs" className="py-20 bg-white" ref={ref}>
+    <section id="programs" className="py-20 bg-blue-300" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -115,7 +277,7 @@ const Programs = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Academic Programs
+            Engineering  Academic Programs
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive engineering education from undergraduate to doctoral levels, 
@@ -135,7 +297,7 @@ const Programs = () => {
                 <div className={`${program.color} p-3 rounded-lg mr-4`}>
                   <program.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-800">{program.level} Programs</h3>
+                <h3 className="text-3xl font-bold text--500">{program.level} Programs</h3>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -169,13 +331,7 @@ const Programs = () => {
                       </ul>
                     </div>
 
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-                    >
-                      Learn More
-                    </motion.button>
+                   
                   </motion.div>
                 ))}
               </div>
@@ -201,15 +357,9 @@ const Programs = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors"
               >
-                Apply Now
+               <a href="https://forms.gle/QekMLvWTsepzdASG9" target='blank'> join our university </a>
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all"
-              >
-                Download Brochure
-              </motion.button>
+             
             </div>
           </div>
         </motion.div>

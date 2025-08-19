@@ -1,8 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Target, Eye, Award, Users } from 'lucide-react';
+import pic from '../assets/bg-pic.jpeg';
 
 const About = () => {
   const ref = useRef(null);
@@ -16,7 +15,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-50" ref={ref}>
+    <section id="about" className="py-20 ml-7 bg-gray-50" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -28,7 +27,7 @@ const About = () => {
             Excellence in Engineering Education
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            The School of Engineering at Dhanalakshmi Srinivasan University stands as a beacon 
+            The School of Engineering at Dhanalakshmi Srinivasan University stands as a beacon
             of innovation and academic excellence, shaping the next generation of engineers.
           </p>
         </motion.div>
@@ -39,18 +38,9 @@ const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-white  rounded-xl shadow-lg hover:shadow-xl transition-shadow"
           >
-            <div className="flex items-center mb-4">
-              <Target className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">Our Mission</h3>
-            </div>
-            <p className="text-gray-600 leading-relaxed">
-              To provide world-class engineering education that combines theoretical knowledge 
-              with practical application, fostering innovation, critical thinking, and ethical 
-              responsibility. We are committed to developing engineers who can address global 
-              challenges and contribute to sustainable development.
-            </p>
+            <img src={pic} alt="DSU campus" className='rounded-2xl' />
           </motion.div>
 
           {/* Vision */}
@@ -65,9 +55,9 @@ const About = () => {
               <h3 className="text-2xl font-bold text-gray-800">Our Vision</h3>
             </div>
             <p className="text-gray-600 leading-relaxed">
-              To be recognized as a leading institution in engineering education and research, 
-              known for producing innovative engineers who excel in their careers and make 
-              meaningful contributions to society. We aspire to be at the forefront of 
+              To be recognized as a leading institution in engineering education and research,
+              known for producing innovative engineers who excel in their careers and make
+              meaningful contributions to society. We aspire to be at the forefront of
               technological advancement and educational excellence.
             </p>
           </motion.div>

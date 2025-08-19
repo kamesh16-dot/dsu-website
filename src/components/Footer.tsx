@@ -1,24 +1,25 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Programs', href: '#programs' },
-    { name: 'Admissions', href: '#admissions' },
-    { name: 'Faculty', href: '#faculty' },
-    { name: 'Facilities', href: '#facilities' },
-    { name: 'Contact', href: '#contact' },
+    
+    { name: 'About', href: '#about', isHash: true },
+   
+    { name: 'Facilities', href: '#facilities', isHash: true },
+  
+    { name: 'Admissions', href: '#admissions', isHash: true },
+    { name: 'Contact', href: '#contact', isHash: true },
   ];
 
   const programs = [
-    { name: 'Computer Science Engineering', href: '#' },
-    { name: 'Electronics & Communication', href: '#' },
-    { name: 'Mechanical Engineering', href: '#' },
-    { name: 'Civil Engineering', href: '#' },
-    { name: 'M.Tech Programs', href: '#' },
-    { name: 'Ph.D. Programs', href: '#' },
+    { name: 'Computer Science Engineering', href: '/program' },
+    { name: 'Electronics & Communication', href: '/program' },
+    { name: 'Mechanical Engineering', href: '/program' },
+    { name: 'Civil Engineering', href: '/program' },
+    { name: 'M.Tech Programs', href: '/program' },
+    { name: 'Ph.D. Programs', href: '/program' },
   ];
 
   const resources = [
@@ -31,10 +32,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, url: '#', label: 'Facebook' },
-    { icon: Twitter, url: '#', label: 'Twitter' },
-    { icon: Instagram, url: '#', label: 'Instagram' },
-    { icon: Linkedin, url: '#', label: 'LinkedIn' },
+    { icon: Facebook, url: 'https://www.facebook.com/profile.php?id=100091800559494&mibextid=ZbWKw', label: 'Facebook' },
+    { icon: Twitter, url: 'https://x.com/dscolleges', label: 'Twitter' },
+    { icon: Instagram, url: 'https://www.instagram.com/dsu_trichy?igsh=MTliYjVocmpuMGJoaQ==', label: 'Instagram' },
+    { icon: Linkedin, url: 'https://www.linkedin.com/school/dhanalakshmisrinivasanuniversity/', label: 'LinkedIn' },
   ];
 
   const scrollToTop = () => {
@@ -52,7 +53,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {/* University Info */}
           <div className="lg:col-span-1">
             <motion.div
@@ -112,31 +113,14 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <h4 className="text-lg font-semibold mb-6 text-yellow-400">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+        
 
           {/* Academic Programs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+              className='sm:ml-9'
           >
             <h4 className="text-lg font-semibold mb-6 text-yellow-400">Academic Programs</h4>
             <ul className="space-y-3">
@@ -154,44 +138,30 @@ const Footer = () => {
           </motion.div>
 
           {/* Resources */}
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className='sm:ml-9'
           >
-            <h4 className="text-lg font-semibold mb-6 text-yellow-400">Resources</h4>
+            <h4 className="text-lg font-semibold mb-6 text-yellow-400">Quick Links</h4>
             <ul className="space-y-3">
-              {resources.map((resource, index) => (
+              {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={resource.href}
+                  <button
+                    onClick={() => scrollToSection(link.href)}
                     className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block"
                   >
-                    {resource.name}
-                  </a>
+                    {link.name}
+                  </button>
                 </li>
               ))}
             </ul>
+          </motion.div>
 
             {/* Newsletter Signup */}
-            <div className="mt-8">
-              <h5 className="font-semibold mb-3">Stay Updated</h5>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg text-sm focus:outline-none focus:border-yellow-400"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-r-lg hover:bg-yellow-400 transition-colors"
-                >
-                  <Mail className="h-4 w-4" />
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
+           
+         
         </div>
       </div>
 
@@ -210,9 +180,7 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                Sitemap
-              </a>
+             
               
               {/* Scroll to Top Button */}
               <motion.button

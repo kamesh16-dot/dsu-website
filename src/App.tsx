@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,7 +10,7 @@ import Faculty from './components/Faculty';
 import Admissions from './components/Admissions';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
+import Research from './components/research'
 function App() {
   return (
     <Router>
@@ -21,16 +21,23 @@ function App() {
             <>
               <Hero />
               <About />
-              <Programs />
+            
               <Facilities />
               <StudentLife />
-              <Faculty />
+          
               <Admissions />
               <Contact />
             </>
           } />
+        
+          <Route path="/faculty" element={<Faculty />} />
+           <Route path="/program" element={<Programs />} />
+           <Route path='/research' element={  <Research/>}/>
         </Routes>
+        
         <Footer />
+
+        
       </div>
     </Router>
   );
