@@ -1,7 +1,8 @@
-import React from 'react';
+
 import { BookOpen, FlaskConical, Users, Award, Briefcase, FileText, Shield } from 'lucide-react';
 
-const ResearchDevelopmentPage = () => {
+const Research = () => {
+
   // Core data
   const features = [
     {
@@ -166,4 +167,4 @@ const ResearchDevelopmentPage = () => {
   );
 };
 
-export default ResearchDevelopmentPage;
+export default Research;
