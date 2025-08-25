@@ -51,24 +51,24 @@ const Header = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-1 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0  right-1 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-md' : 'bg-blue-100 bg-opacity-10 shadow-md'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <nav className="max-w-7xl mx-auto px-3 py-3 ml-0">
-        <div className="flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-3 py-3 ml-90">
+        <div className="flex items-center justify-between s ">
           {/* Logo */}
-          <motion.div className="flex items-center space-x-" whileHover={{ scale: 1.03 }}>
+          <motion.div className="flex items-center space-x- " whileHover={{ scale: 1.03 }}>
             <Link to="/" className="flex items-center">
-              <img src={dsu_pic} alt="DSU Logo" className="h-12 w-23 object-cover" />
+              <img src={dsu_pic} alt="DSU Logo" className="h-13 w-24 object-cover" />
               <div className="ml-3 gap-2">
-                <h1 className={`text-xs font-bold ${isScrolled ? 'text-black' : 'text-gray-100'}`}>
+                <h1 className={`text-xs lg:text-lg font-bold  ${isScrolled ? 'text-black' : 'text-gray-100'}`}>
                   Dhanalakshmi Srinivasan University
                 </h1>
-                <p className={`text-xs ${isScrolled ? 'text-gray-900' : 'text-gray-100'}`}>
+                <p className={`text-xs lg:text-lg ${isScrolled ? 'text-gray-900' : 'text-gray-100'}`}>
                   School of Engineering
                 </p>
               </div>
@@ -76,13 +76,13 @@ const Header = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1    ">
             {navItems.map((item) => (
               item.subItems ? (
                 <div key={item.name} className="relative group">
                   <button
                     onClick={() => setIsAboutOpen(!isAboutOpen)}
-                    className={`flex items-center font-medium px-3 py-2 transition-colors ${
+                    className={`flex items-center font-medium px-3  py-2 transition-colors ${
                       isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-200'
                     }`}
                   >
