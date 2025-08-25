@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
+import { Link } from 'react-router-dom'; // <-- Add this import
 
 const Hero = () => {
 
-    const programs = [{ name: 'Explore the programs', href: '/program' }]
+    const programs = [{ name: 'Explore the programs', href: '/program' }] // <-- Keep as is
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background with parallax effect */}
@@ -88,12 +89,12 @@ const Hero = () => {
                        <ul className="space-y-3">
                          {programs.map((program, index) => (
                            <li key={index}>
-                             <a
-                               href={program.href}
+                             <Link
+                               to={program.href}
                                className="text-white transition-colors hover:bg-blue-700 bg-yellow-500 p-5  rounded-full text-4 font-bold hover:translate-x-1 transform duration-200 block"
                              >
                                {program.name}
-                             </a>
+                             </Link>
                            </li>
                          ))}
                        </ul>
