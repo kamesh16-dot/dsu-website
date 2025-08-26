@@ -24,7 +24,7 @@ const Header = () => {
      { name: 'About', href: '#about', isHash: true },
     { name: 'Programs', href: '/program', isHash: false },
     { name: 'Facilities', href: '#facilities', isHash: true },
-    { name: 'Faculty', href: '/faculty', isHash: false },
+    { name: 'Faculties', href: '/faculty', isHash: false },
     { name: 'Admissions', href: '#admissions', isHash: true },
     { name: 'Contact', href: '#contact', isHash: true },
     { 
@@ -32,7 +32,8 @@ const Header = () => {
    
       isHash: true,
       subItems: [
-        { name: 'Research & Development', href: '/Research' }
+        { name: 'Research & Development', href: '/Research' },
+        { name: 'Academic Calender', href: '/Research' }
       ]
     },
   ];
@@ -63,13 +64,13 @@ const Header = () => {
           {/* Logo */}
           <motion.div className="flex items-center space-x- " whileHover={{ scale: 1.03 }}>
             <Link to="/" className="flex items-center">
-              <img src={dsu_pic} alt="DSU Logo" className="h-13 w-24 object-cover" />
+              <img src={dsu_pic} alt="DSU Logo" className="h-12 w-23 object-cover" />
               <div className="ml-3 gap-2">
-                <h1 className={`text-xs lg:text-lg font-bold  ${isScrolled ? 'text-black' : 'text-gray-100'}`}>
+                <h1 className={`text-xs lg:text-md font-bold  ${isScrolled ? 'text-black' : 'text-gray-100'}`}>
                   Dhanalakshmi Srinivasan University
                 </h1>
-                <p className={`text-xs lg:text-lg ${isScrolled ? 'text-gray-900' : 'text-gray-100'}`}>
-                  School of Engineering
+                <p className={`text-xs lg:text-lg  font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-100'}`}>
+                  School of Engineering & Technology
                 </p>
               </div>
             </Link>

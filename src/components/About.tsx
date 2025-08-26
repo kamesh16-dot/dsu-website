@@ -1,14 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Target, Eye, Award, Users } from 'lucide-react';
-import pic from '../assets/bg-pic.jpeg';
+import { Target, Eye, Award, Users, Microscope } from 'lucide-react';
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true,  });
 
   const stats = [
-    { icon: Users, label: 'Students', value: '2,500+' },
+    { icon: Users, label: 'Students', value: '8,500+' },
     { icon: Award, label: 'Programs', value: '15+' },
     { icon: Target, label: 'Placement Rate', value: '94%' },
     { icon: Eye, label: 'Research Projects', value: '150+' },
@@ -35,14 +34,22 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* Mission */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white  rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
           >
-            <img src={pic} alt="DSU campus" className='rounded-2xl' />
+            <div className="flex items-center mb-4">
+              <Eye className="h-8 w-8 text-blue-600 mr-3" />
+              <h3 className="text-2xl font-bold text-gray-800">Vision</h3>
+            </div>
+            <p className="text-gray-600 leading-relaxed">
+              To be recognized as a leading institution in engineering education and research,
+              known for producing innovative engineers who excel in their careers and make
+              meaningful contributions to society. We aspire to be at the forefront of
+              technological advancement and educational excellence.  
+            </p>
           </motion.div>
-
           {/* Vision */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -51,14 +58,14 @@ const About = () => {
             className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center mb-4">
-              <Eye className="h-8 w-8 text-blue-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">Our Vision</h3>
+              <Microscope className="h-8 w-8 text-blue-600 mr-3" />
+              <h3 className="text-2xl font-bold text-gray-800">Mission</h3>
             </div>
             <p className="text-gray-600 leading-relaxed">
               To be recognized as a leading institution in engineering education and research,
               known for producing innovative engineers who excel in their careers and make
               meaningful contributions to society. We aspire to be at the forefront of
-              technological advancement and educational excellence.
+              technological advancement and educational excellence.  
             </p>
           </motion.div>
         </div>

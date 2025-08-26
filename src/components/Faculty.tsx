@@ -7,16 +7,16 @@ const Faculty = () => {
   const isInView = useInView(ref, { once: true, });
 
   const facultyMembers = [
+
     {
-      name: 'Dr. Shankar Duraikannan',
+      name: 'Dr. V. Sekar',
       position: 'Dean & Professor',
-      department: 'Computer Science Engineering',
-      image: 'https://www.dsuniversity.ac.in/dsu-university/datas/staff_photos/Dr-Shankar-Duraikannan.jpg',
-      
-      experience: '25+ years',
-      publications: '85+ Research Papers',
-     
+      department: 'Electrical and Electronics Engineering',
+      image: 'https://www.dsuniversity.ac.in/dsu-university/datas/staff_photos/Dr__V__Sekar3.jpg',
+      experience: '15+ years',
+       publications: '70+ Research Papers'
     },
+    
     {
       name: 'Dr. V. Raju',
       position: 'Associate Dean',
@@ -60,14 +60,7 @@ const Faculty = () => {
       experience: '15+ years',
        publications: '70+ Research Papers'
     },
-     {
-      name: 'Dr. V. Sekar',
-      position: 'Professor',
-      department: 'Electrical and Electronics Engineering',
-      image: 'https://www.dsuniversity.ac.in/dsu-university/datas/staff_photos/Dr__V__Sekar3.jpg',
-      experience: '15+ years',
-       publications: '70+ Research Papers'
-    },
+     
      {
       name: 'Dr. S. Selvakumar',
       position: 'Professor',
@@ -1109,7 +1102,7 @@ const Faculty = () => {
           className="text-center mb-16 bg-gray-"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-300 mb-6">
-           School of Engineering & Technology faculty
+           School of Engineering & Technology Faculties
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
             Learn from industry experts and renowned academicians who bring decades of 
