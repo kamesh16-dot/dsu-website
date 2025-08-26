@@ -33,7 +33,7 @@ const Header = () => {
       isHash: true,
       subItems: [
         { name: 'Research & Development', href: '/Research' },
-        { name: 'Academic Calender', href: '/Research' }
+        { name: 'Academic Calender', href: '/clander' }
       ]
     },
   ];

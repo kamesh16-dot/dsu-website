@@ -4,7 +4,7 @@ import { Trophy, Users, Briefcase, Star, Calendar, Award } from 'lucide-react';
 
 const StudentLife = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true, });
 
   const achievements = [
     {

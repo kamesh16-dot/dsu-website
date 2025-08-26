@@ -10,6 +10,7 @@ import Admissions from './components/Admissions';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Research from './components/research'
+import PDFViewer from './components/PDFViewer'
 function App() {
   return (
     <Router basename="/dsu-website">
@@ -32,6 +33,8 @@ function App() {
           <Route path="/faculty" element={<Faculty />} />
           <Route path="/program" element={<Programs />} />
           <Route path='/research' element={<Research />} />
+        
+           <Route path='/clander' element={ <PDFViewer />} />
         </Routes>
 
         <Footer />
