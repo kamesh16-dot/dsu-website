@@ -268,7 +268,7 @@ const Programs = () => {
   };
 
   return (
-    <section id="programs" className="py-20 bg-blue-300" ref={ref}>
+    <section id="programs" className="py-48 bg-blue-300" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

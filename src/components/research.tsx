@@ -49,7 +49,7 @@ const Research = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-20 px-6">
+      <div className="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-48 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Research & Development Cell</h1>
           <p className="text-xl md:text-2xl max-w-4xl mx-auto">

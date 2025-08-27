@@ -1,110 +1,94 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
-import { Link } from 'react-router-dom'; // <-- Add this import
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
-
-    const programs = [{ name: 'Explore the programs', href: '/program' }] // <-- Keep as is
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with parallax effect */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900"
-        style={{
-          backgroundImage: `url('https://res.cloudinary.com/ds5x8xtyg/image/upload/v1755158720/bg-pic_mgrmbd.jpg')`,
-          backgroundSize: 'cover',
-         backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
+    <section className="relative h-screen flex flex-col overflow-hidden">
+      
+     {/* 🎥 Background */}
+<div className="absolute inset-0">
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="w-full h-full object-cover"
+  >
+    <source
+      src="https://www.dsuniversity.ac.in/video/DSU_30%20SEC_V1.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+  {/* Subtle gradient instead of dark block */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70"></div>
+</div>
+
+{/* ✨ Main Content */}
+<div className="relative z-10 flex-1 flex items-center justify-center px-6">
+  <div className="w-full text-center max-w-4xl mx-auto">
+    {/* 🎓 Heading */}
+    <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
+      DSU <span className="text-yellow-400">School of Engineering</span>
+    </h1>
+
+    {/* 🌟 Tagline */}
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, repeat: Infinity, repeatType: "mirror" }}
+      className="text-lg md:text-2xl text-gray-100 font-light mb-8 tracking-wide drop-shadow-md"
+    >
+      Innovate • Create • Lead
+    </motion.p>
+
+    {/* 🎯 CTA Buttons */}
+    <div className="flex flex-col sm:flex-row gap-5 justify-center">
+      <Link
+        to="/program"
+        className="px-8 py-3 rounded-full bg-yellow-500 text-black font-semibold hover:bg-yellow-600 transition shadow-md"
       >
-        <div className="absolute inset-0 bg-blue-900 bg-opacity-80"></div>
-      </div>
+        Explore Programs
+      </Link>
+      <a
+        href="https://forms.gle/QekMLvWTsepzdASG9"
+        target="_blank"
+        rel="noreferrer"
+        className="px-8 py-3 rounded-full border-2 border-white text-white font-medium hover:bg-white hover:text-black transition shadow-md"
+      >
+        Apply Now
+      </a>
+    </div>
+  </div>
+</div>
 
-      {/* Floating particles animation */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-yellow-400 rounded-full opacity-30"
-            animate={{
-              y: [-20, -100, -20],
-              x: [-10, 10, -10],
-              scale: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2,
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+     
+    {/* 🎓 Admission Ticker (always at bottom) */}
+<div className="absolute bottom-0 left-0 w-full overflow-hidden bg-yellow-500 py-1 z-20">
+  <div className="flex animate-marquee whitespace-nowrap">
+    <span className="mx-6 text-black font-semibold text-sm uppercase">
+      🚀 Admissions Open 2025 • Apply Now!
+    </span>
+    <span className="mx-6 text-black font-semibold text-sm uppercase">
+      🎓 Engineering • Technology • Innovation
+    </span>
+    <span className="mx-6 text-black font-semibold text-sm uppercase">
+      🌟 Secure Your Future at DSU
+    </span>
+    <span className="mx-6 text-black font-semibold text-sm uppercase">
+     B.Tech  Admissions Open 2025 • Apply Now!
+    </span>
+     <span className="mx-6 text-black font-semibold text-sm uppercase">
+     m.Tech  Admissions Open 2025 • Apply Now!
+    </span>
+     <span className="mx-6 text-black font-semibold text-sm uppercase">
+     P.h.d  Admissions Open 2025 • Apply Now!
+    </span>
+   
+  </div>
+</div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto mt-5">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight mt-20"
-            initial={{ scale: 0.5 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-           School  <span className="text-yellow-400">of Engineering  </span>
-            <br />
-           <span className="text-yellow-400">and</span> Technology
-          </motion.h1>
-
-          <motion.p 
-            className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            At the School of Engineering, DSU, we believe engineers are not just problem-solvers — they are innovators, creators, and changemakers. Our programs are designed to blend strong theoretical foundations with  hands-on experience.
-          </motion.p>
-
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            {/* Academic Programs */}
-                     <motion.div
-                       initial={{ opacity: 0, y: 20 }}
-                       whileInView={{ opacity: 1, y: 0 }}
-                       transition={{ duration: 0.6, delay: 0.2 }}
-                     >
-                      
-                       <ul className="space-y-3">
-                         {programs.map((program, index) => (
-                           <li key={index}>
-                             <Link
-                               to={program.href}
-                               className="text-white transition-colors hover:bg-blue-700 bg-yellow-500 p-5  rounded-full text-4 font-bold hover:translate-x-1 transform duration-200 block"
-                             >
-                               {program.name}
-                             </Link>
-                           </li>
-                         ))}
-                       </ul>
-                     </motion.div>
-            
-          </motion.div>
-        </motion.div>
-
-       
-      </div>
     </section>
   );
 };

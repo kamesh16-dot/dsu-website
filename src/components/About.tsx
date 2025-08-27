@@ -4,7 +4,7 @@ import { Target, Eye, Award, Users, Microscope } from 'lucide-react';
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true,  });
+  const isInView = useInView(ref, { once: true });
 
   const stats = [
     { icon: Users, label: 'Students', value: '8,500+' },
@@ -32,9 +32,9 @@ const About = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          {/* Mission */}
+          {/* Vision */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
@@ -50,7 +50,8 @@ const About = () => {
               technological advancement and educational excellence.  
             </p>
           </motion.div>
-          {/* Vision */}
+
+          {/* Mission */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

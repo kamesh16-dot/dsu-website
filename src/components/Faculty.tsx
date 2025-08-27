@@ -1093,21 +1093,18 @@ const Faculty = () => {
   };
 
   return (
-    <section id="faculty" className="py-20 bg-gray-500" ref={ref}>
+    <section id="faculty" className="py-48 bg-gray-500" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 bg-gray-"
+          className="text-center mb-16 bg-gray"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-300 mb-6">
            School of Engineering & Technology Faculties
           </h2>
-          <p className="text-xl text-black max-w-3xl mx-auto">
-            Learn from industry experts and renowned academicians who bring decades of 
-            experience and cutting-edge knowledge to guide your engineering journey.
-          </p>
+          
         </motion.div>
 
         {/* Faculty Statistics */}
