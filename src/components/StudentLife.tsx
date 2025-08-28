@@ -1,23 +1,31 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Trophy, Users, Briefcase, Star, Calendar, Award } from 'lucide-react';
+import { Trophy, Briefcase, Star, Award, Users, Calendar } from 'lucide-react';
+import CountUp from 'react-countup';
 
 const StudentLife = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true,});
+  const isInView = useInView(ref, { once: true });
 
   const achievements = [
     {
+      year: '2025',
+      title: 'AI Research Excellence',
+      description: 'Students and faculty collaborated on AI projects, publishing 10 papers in top-tier journals.',
+      icon: Users,
+      color: 'bg-red-500'
+    },
+    {
       year: '2024',
       title: 'National Hackathon Championship',
-      description: 'Our students secured 1st place in the National Level Hackathon with their innovative IoT solution for smart farming.',
+      description: '1st place in the National Level Hackathon with innovative IoT solutions for smart farming.',
       icon: Trophy,
       color: 'bg-yellow-500'
     },
     {
       year: '2024',
       title: 'Industry Internship Program',
-      description: '250+ students successfully completed internships at top companies including Google, Microsoft, and TCS.',
+      description: '250+ students completed internships at top companies including Google, Microsoft, and TCS.',
       icon: Briefcase,
       color: 'bg-green-500'
     },
@@ -34,58 +42,58 @@ const StudentLife = () => {
       description: 'Achieved 94% placement rate with highest package of ₹25 LPA and average package of ₹8.5 LPA.',
       icon: Star,
       color: 'bg-purple-500'
+    },
+    {
+      year: '2022',
+      title: 'Cultural Fest Recognition',
+      description: 'Won Best Cultural Festival Award at the State Level University Events.',
+      icon: Calendar,
+      color: 'bg-pink-500'
     }
   ];
 
   const activities = [
-    
-
     {
-  "name": "Sports & Activities",
-  "description": "Engaging events including inter-college tournaments, athletics, indoor & outdoor games, and fitness programs",
-  "image": "https://www.dsuniversity.ac.in/images/Sports_Act-04.jpg",
- 
-},
-    {
-  "name": "campus",
-  "description": "Modern academic blocks and administrative buildings designed with smart architecture, spacious classrooms, and eco-friendly infrastructure",
-  "image": "https://www.dsuniversity.ac.in/infra/campus-img-03.jpg",
-  "participants": "5000+"
-}
-,
-    {
-      name: 'Innovation Labs',
-      description: 'Student-led research projects and startup incubation programs with mentorship support',
-      image: 'https://www.dsuniversity.ac.in/infra/lab4.jpg',
-      participants: '150+'
+      name: "Sports & Activities",
+      description: "Inter-college tournaments, athletics, indoor & outdoor games, and fitness programs.",
+      image: "https://www.dsuniversity.ac.in/images/Sports_Act-04.jpg",
     },
     {
-  "name": "Learning Center",
-  "description": "Dedicated space for advanced learning with digital libraries, e-resources, research support, and collaborative study areas",
-  "image": "https://www.dsuniversity.ac.in/images/learn5.jpg"
-}
-
+      name: "Campus",
+      description: "Modern academic blocks, spacious classrooms, and eco-friendly infrastructure.",
+      image: "https://www.dsuniversity.ac.in/infra/campus-img-03.jpg",
+    },
+    {
+      name: 'Innovation Labs',
+      description: 'Student-led research projects and startup incubation programs.',
+      image: 'https://www.dsuniversity.ac.in/infra/lab4.jpg',
+    },
+    {
+      name: "Learning Center",
+      description: "Digital libraries, e-resources, research support, and collaborative study areas.",
+      image: "https://www.dsuniversity.ac.in/images/learn5.jpg",
+    }
   ];
 
   const placementStats = [
-    { label: 'Placement Rate', value: '94%', icon: Star },
-    { label: 'Highest Package', value: '₹25 LPA', icon: Trophy },
-    { label: 'Average Package', value: '₹8.5 LPA', icon: Award },
-    { label: 'Top Recruiters', value: '150+', icon: Briefcase }
+    { label: 'Placement Rate', value: 94, suffix: '%', icon: Star },
+    { label: 'Highest Package', value: 25, suffix: ' LPA', icon: Trophy },
+    { label: 'Average Package', value: 8.5, suffix: ' LPA', icon: Award },
+    { label: 'Top Recruiters', value: 150, suffix: '+', icon: Briefcase }
   ];
 
   return (
-    <section id="student-life" className="py-20 bg-white" ref={ref}>
+    <section id="student-life" className="py-24 bg-gray-50 mt-48" ref={ref}>
       <div className="container mx-auto px-6">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Student Life & Achievements
-          </h2>
+          <h2 className="text-5xl font-extrabold text-gray-800 mb-6">Student Life & Achievements</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience a vibrant campus life filled with opportunities for growth, 
             learning, and achievement in both academic and extracurricular activities.
@@ -97,57 +105,59 @@ const StudentLife = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-20"
+          className="mb-24 relative"
         >
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Recent Achievements</h3>
+          <h3 className="text-4xl font-bold text-center text-gray-800 mb-16">Recent Achievements</h3>
+
           <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 bg-blue-200 h-full"></div>
-            
-            <div className="space-y-12">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-                  className={`flex items-center ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } flex-col md:flex-row`}
-                >
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <div className="bg-gray-50 p-6 rounded-xl hover:shadow-lg transition-shadow">
-                      <div className="flex items-center mb-4">
-                        <div className={`${achievement.color} p-2 rounded-lg mr-3`}>
-                          <achievement.icon className="h-6 w-6 text-white" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-blue-200 h-full"></div>
+
+            <div className="space-y-16">
+              {achievements.map((achievement, index) => {
+                const Icon = achievement.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
+                    className={`flex flex-col md:flex-row items-center ${
+                      index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    }`}
+                  >
+                    <div className="w-full md:w-5/12 px-4">
+                      <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+                        <div className="flex items-center mb-4">
+                          <div className={`${achievement.color} p-3 rounded-lg mr-3`}>
+                            <Icon className="h-6 w-6 text-white" />
+                          </div>
+                          <span className="text-sm font-semibold text-gray-500">{achievement.year}</span>
                         </div>
-                        <span className="text-sm font-semibold text-gray-500">{achievement.year}</span>
+                        <h4 className="text-2xl font-bold text-gray-800 mb-2">{achievement.title}</h4>
+                        <p className="text-gray-600">{achievement.description}</p>
                       </div>
-                      <h4 className="text-xl font-bold text-gray-800 mb-3">{achievement.title}</h4>
-                      <p className="text-gray-600">{achievement.description}</p>
                     </div>
-                  </div>
-                  
-                  {/* Timeline dot */}
-                  <div className={`${achievement.color} w-8 h-8 rounded-full border-4 border-white shadow-lg relative z-10 flex items-center justify-center my-4 md:my-0`}>
-                    <achievement.icon className="h-4 w-4 text-white" />
-                  </div>
-                  
-                  <div className="w-full md:w-5/12"></div>
-                </motion.div>
-              ))}
+
+                    <div className={`${achievement.color} w-10 h-10 rounded-full border-4 border-white shadow-lg relative z-10 flex items-center justify-center my-6 md:my-0`}>
+                      <Icon className="h-5 w-5 text-white" />
+                    </div>
+
+                    <div className="w-full md:w-5/12"></div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.div>
 
-        {/* Student Activities */}
+        {/* Campus Activities */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-20"
+          className="mb-24"
         >
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Campus Activities & Life</h3>
+          <h3 className="text-4xl font-bold text-center text-gray-800 mb-12">Campus Activities & Life</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {activities.map((activity, index) => (
               <motion.div
@@ -155,20 +165,17 @@ const StudentLife = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ y: -10, boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
+                className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
               >
-                <div className="relative h-48">
-                  <img
-                    src={activity.image}
-                    alt={activity.name}
-                    className="w-full h-full object-cover"
-                  />
-                 
-                </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-bold text-gray-800 mb-3">{activity.name}</h4>
-                  <p className="text-gray-600 text-sm">{activity.description}</p>
+                <img
+                  src={activity.image}
+                  alt={activity.name}
+                  className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-90 p-6 flex flex-col justify-end">
+                  <h4 className="text-white text-xl font-bold">{activity.name}</h4>
+                  <p className="text-white text-sm mt-2">{activity.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -180,34 +187,36 @@ const StudentLife = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-3xl"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Placement Excellence</h3>
+          <h3 className="text-4xl font-bold text-center mb-12">Placement Excellence</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {placementStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ scale: 0 }}
-                animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                className="text-center"
-              >
-                <div className="bg-white bg-opacity-20 backdrop-blur-sm p-4 rounded-xl mb-4">
-                  <stat.icon className="h-8 w-8 text-yellow-400 mx-auto mb-2" />
-                  <div className="text-2xl md:text-3xl font-bold">{stat.value}</div>
-                </div>
-                <div className="text-blue-100">{stat.label}</div>
-              </motion.div>
-            ))}
+            {placementStats.map((stat, index) => {
+              const StatIcon = stat.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-2xl mb-4 flex flex-col items-center">
+                    <StatIcon className="h-10 w-10 text-yellow-400 mb-2" />
+                    <div className="text-3xl font-extrabold">
+                      <CountUp end={stat.value} duration={2} suffix={stat.suffix} />
+                    </div>
+                  </div>
+                  <div className="text-blue-100 text-lg">{stat.label}</div>
+                </motion.div>
+              );
+            })}
           </div>
-          
-          <div className="text-center mt-12">
-            <p className="text-blue-100 mb-6">
-              Our graduates are working at top companies worldwide, making significant contributions to technology and innovation.
-            </p>
-           
-          </div>
+          <p className="text-center mt-12 text-blue-100 text-lg">
+            Our graduates are working at top companies worldwide, making significant contributions to technology and innovation.
+          </p>
         </motion.div>
+
       </div>
     </section>
   );

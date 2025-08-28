@@ -12,19 +12,27 @@ import Footer from './components/Footer';
 import Research from './components/research'
 import PDFViewer from './components/PDFViewer'
 import CulturalEventsPage from './components/Culturals';
+import Sa from './components/Student-a';
+import Placement from './components/placement-obj';
+import Hrdc from './components/hrdc';
+import StickyNavButtons from './components/Sticky';
+import ChatBot from './components/chatbot';
+import InternshipPage from './components/internship';
+import Devloment from './components/Devlopment';
 function App() {
   return (
-    <Router basename="/dsu-website">
+    <Router basename="/dsu-website/">
       <div className="min-h-screen bg-white">
         <Header />
+        <StickyNavButtons />
+        <ChatBot />
         <Routes>
           <Route path="/" element={
             <>
               <Hero />
               <About />
-
+              
               <Facilities />
-              <StudentLife />
 
               <Admissions />
               <Contact />
@@ -34,9 +42,14 @@ function App() {
           <Route path="/faculty" element={<Faculty />} />
           <Route path="/program" element={<Programs />} />
           <Route path='/research' element={<Research />} />
-       
            <Route path='/clander' element={ <PDFViewer />} />
             <Route path='/cul' element={ < CulturalEventsPage />} />
+             <Route path='/Sa' element={ < Sa />} />
+              <Route path='/Students' element={  <StudentLife />} />
+                <Route path='/placement' element={  <Placement />} />
+                <Route path='/hrdc' element={  <Hrdc />} />
+                <Route path='/intern' element={    <InternshipPage />} />
+                <Route path='/erc' element={    <Devloment />} />
         </Routes>
 
         <Footer />

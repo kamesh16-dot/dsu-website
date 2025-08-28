@@ -1,109 +1,261 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Users,
+  Briefcase,
+  Trophy,
+  Star,
+  Award,
+} from "lucide-react";
 import dsu_pic from "../assets/logo-pic.png";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openQuickDropdown, setOpenQuickDropdown] = useState<string | null>(
+    null
+  );
+  const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null);
+  const [mobileQuickSubMenu, setMobileQuickSubMenu] = useState<string | null>(
+    null
+  );
   const location = useLocation();
+  const navigate = useNavigate();
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  // Scroll effect for header
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpenDropdown(null);
+        setOpenQuickDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Navigation Items
   const navItems = [
-    { name: "Home", href: "#Hero", isHash: true },
-    { name: "About", href: "#about", isHash: true },
-    { name: "Programs", href: "/program", isHash: false },
+    { name: "Home", href: "#", isHash: true, icon: Users },
+    { name: "About", href: "#about", isHash: true, icon: Users },
+    { name: "Programs", href: "/program", isHash: false, icon: Briefcase },
+    {
+      name: "Placements",
+      icon: Trophy,
+      subItems: [
+        { name: "Objectives", href: "/placement", isHash: false, icon: Trophy },
+        { name: "Vision & Mission", href: "/research", isHash: false, icon: Star },
+        { name: "About HRDC", href: "/hrdc", isHash: false, icon: Award },
+        { name: "HRDC Faculty", href: "/clander", isHash: false, icon: Users },
+        { name: "Internship", href: "/intern", isHash: false, icon: Briefcase },
+        { name: "Training & Placement Cell", href: "/placement-cell", isHash: false, icon: Trophy },
+        { name: "Entrepreneur Development Cell", href: "/erc", isHash: false, icon: Briefcase },
+        { name: "Higher Education Cell", href: "/higher-education", isHash: false, icon: Star },
+        { name: "Career Guidance Cell", href: "/career-guidance", isHash: false, icon: Users },
+        { name: "Internship Drive", href: "/internship-drive", isHash: false, icon: Trophy },
+        { name: "Industrial Visit", href: "/industrial-visit", isHash: false, icon: Briefcase },
+        { name: "MoU", href: "/mou", isHash: false, icon: Award },
+        { name: "MoU Activity", href: "/mou-activity", isHash: false, icon: Award },
+      ],
+    },
     {
       name: "Facilities",
+      icon: Users,
       subItems: [
-        { name: "Laboratories", href: "#facilities" },
-        { name: "Culturals and Sports", href: "/cul" },
-        { name: "Hostels", href: "#hostels" },
-        { name: "Cafeteria", href: "#cafeteria" },
+        { name: "Laboratories", href: "#facilities", isHash: true, icon: Trophy },
+        { name: "Culturals and Sports", href: "/cul", isHash: false, icon: Star },
+        { name: "Hostels", href: "#hostels", isHash: true, icon: Users },
+        { name: "Cafeteria", href: "#cafeteria", isHash: true, icon: Award },
       ],
     },
-    { name: "Faculties", href: "/facult", isHash: false },
-    { name: "Admissions", href: "#admissions", isHash: true },
-    { name: "Contact", href: "#contact", isHash: true },
-    {
-      name: "More",
-      subItems: [
-        { name: "Research & Development", href: "/Research" },
-        { name: "Academic Calendar", href: "/clander" },
-      ],
-    },
+    { name: "Admissions", href: "#admissions", isHash: true, icon: Star },
+    { name: "Contact", href: "#contact", isHash: true, icon: Users },
   ];
 
+  // Quick Links
   const quickLinks = [
-    { name: "Student Login", href: "#student-login" },
-    { name: "Faculty Login", href: "#faculty-login" },
-    { name: "Alumni", href: "#alumni" },
-    { name: "Careers", href: "#careers" },
+    {
+      name: "Student",
+      icon: Users,
+      subItems: [
+        { name: "Students' Affairs", href: "/Sa", isHash: false, icon: Users },
+        { name: "Academic Bank of Credits", href: "/student-exams", isHash: false, icon: Star },
+        { name: "Scholarship", href: "/scholarship", isHash: false, icon: Trophy },
+        { name: "Student-achievment", href: "/Students", isHash: false, icon: Award },
+      ],
+    },
+    {
+      name: "Faculty Login",
+      icon: Users,
+      subItems: [
+        { name: "Faculties", href: "/faculty", isHash: false, icon: Users },
+        { name: "Faculty Portal", href: "/faculty-portal", isHash: false, icon: Star },
+      ],
+    },
+    { name: "Alumni", href: "#alumni", isHash: true, icon: Users },
+    { name: "Careers", href: "#careers", isHash: true, icon: Briefcase },
   ];
 
-  const handleNavigation = (href, isHash) => {
+  // Navigation handler
+  const handleNavigation = (href: string, isHash: boolean) => {
     if (isHash) {
-      if (location.pathname !== "/") window.location.href = `/${href}`;
-      else {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
         const element = document.querySelector(href);
         if (element) element.scrollIntoView({ behavior: "smooth" });
       }
+    } else {
+      navigate(href);
     }
     setIsMobileMenuOpen(false);
+    setMobileSubMenu(null);
+    setMobileQuickSubMenu(null);
   };
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "shadow-md bg-transparent"
+        isScrolled ? "bg-white shadow-md" : "bg-transparent shadow-md"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <nav className="max-w-7xl mx-auto px-4 py-3">
-        {/* ===== Desktop Header ===== */}
-        <div className="hidden lg:flex flex-col w-full">
-          {/* Top Row: Logo + Quick Links */}
+
+        {/* Desktop Header */}
+        <div className="hidden lg:flex flex-col w-full" ref={dropdownRef}>
           <div className="flex justify-between items-center mb-3">
-            <Link to="/" className="flex items-center gap-3">
-              <img src={dsu_pic} alt="DSU Logo" className="h-14 w-20 object-contain" />
-              <div className="flex flex-col">
-                <h1 className={`text-3xl font-extrabold ${isScrolled ? "text-yellow-300" : "text-white"}`}>
-                  Dhanalakshmi Srinivasan University
-                </h1>
-                <p className={`text-lg ${isScrolled ? "text-gray-900 font-semibold" : "text-white"}`}>
-                  School of Engineering & Technology
-                </p>
-              </div>
-            </Link>
-            <div className={`flex items-center gap-6 text-sm ${ isScrolled ?"text-black":"text-white"}`}>
-              {quickLinks.map(link => (
-                <a key={link.name} href={link.href} className="hover:text-yellow-300 transition-colors">
-                  {link.name}
-                </a>
-              ))}
+            {/* Logo */}
+         <button
+  onClick={() => handleNavigation("#hero", true)}
+  className="flex items-center gap-3"
+>
+  <img
+    src={dsu_pic}
+    alt="DSU Logo"
+    className="h-14 w-20 object-contain"
+  />
+  <div className="flex flex-col text-left">
+    <h1
+      className={`text-3xl font-extrabold ${
+        isScrolled ? "text-black" : "text-white"
+      }`}
+    >
+      Dhanalakshmi Srinivasan University
+    </h1>
+    <p
+      className={`text-lg ${
+        isScrolled ? "text-gray-900 font-semibold" : "text-white"
+      }`}
+    >
+      School of Engineering & Technology
+    </p>
+  </div>
+</button>
+
+
+            {/* Quick Links */}
+            <div className="flex items-center gap-6 text-sm">
+              {quickLinks.map((link) =>
+                link.subItems ? (
+                  <div
+                    key={link.name}
+                    className="relative"
+                    onMouseEnter={() => setOpenQuickDropdown(link.name)}
+                    onMouseLeave={() => setOpenQuickDropdown(null)}
+                  >
+                    <button
+                      aria-expanded={openQuickDropdown === link.name}
+                      className={`flex items-center gap-1 font-medium px-2 py-1 transition-colors ${
+                        isScrolled ? "text-black" : "text-white"
+                      } hover:text-yellow-300`}
+                    >
+                      {link.name} <ChevronDown className="h-4 w-4" />
+                    </button>
+                    {openQuickDropdown === link.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 mt-1 w-max min-w-[300px] rounded-xl shadow-xl bg-white p-4 grid grid-cols-2 gap-3 z-50"
+                      >
+                        {link.subItems.map((sub) =>
+                          sub.isHash ? (
+                            <button
+                              key={sub.name}
+                              onClick={() => handleNavigation(sub.href, true)}
+                              className="flex items-center gap-2 p-3 rounded-xl hover:bg-blue-50 transition text-gray-800"
+                            >
+                              <sub.icon className="h-5 w-5 text-blue-600" />
+                              {sub.name}
+                            </button>
+                          ) : (
+                            <NavLink
+                              key={sub.name}
+                              to={sub.href}
+                              className="flex items-center gap-2 p-3 rounded-xl hover:bg-blue-50 transition text-gray-800"
+                              onClick={() => setOpenQuickDropdown(null)}
+                            >
+                              <sub.icon className="h-5 w-5 text-blue-600" />
+                              {sub.name}
+                            </NavLink>
+                          )
+                        )}
+                      </motion.div>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    key={link.name}
+                    onClick={() => handleNavigation(link.href, link.isHash!)}
+                    className={`transition-colors font-medium ${
+                      isScrolled ? "text-black" : "text-white"
+                    } hover:text-yellow-300`}
+                  >
+                    {link.name}
+                  </button>
+                )
+              )}
             </div>
           </div>
 
-          {/* Navigation Row */}
-          <div className="flex justify-center items-center space-x-4 border-t border-gray-200 pt-3">
-            {navItems.map(item =>
+          {/* Main Nav */}
+          <div className="flex justify-center items-center space-x-4 border-t border-gray-200 pt-4">
+            {navItems.map((item) =>
               item.subItems ? (
                 <div key={item.name} className="relative group">
                   <button
-                    onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                    aria-expanded={openDropdown === item.name}
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === item.name ? null : item.name)
+                    }
                     className={`flex items-center font-medium px-3 py-2 transition-colors ${
-                      isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
-                    }`}
+                      isScrolled ? "text-black" : "text-white"
+                    } hover:text-yellow-300`}
                   >
+                    <item.icon className="h-4 w-4 mr-1" />
                     {item.name}
                     <ChevronDown
                       className={`ml-1 h-4 w-4 transition-transform ${
@@ -111,125 +263,146 @@ const Header = () => {
                       }`}
                     />
                   </button>
+
                   {openDropdown === item.name && (
-                    <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white py-1 z-50">
-                      {item.subItems.map(sub =>
-                        sub.href.startsWith("#") ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 mt-6 w-max rounded-none shadow-xl bg-white p-4 grid grid-cols-2 gap-2 z-50"
+                    >
+                      {item.subItems.map((sub) =>
+                        sub.isHash ? (
                           <button
                             key={sub.name}
                             onClick={() => handleNavigation(sub.href, true)}
-                            className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-blue-50 transition text-gray-800 text-left"
                           >
+                            <sub.icon className="h-5 w-5 text-blue-600" />
                             {sub.name}
                           </button>
                         ) : (
                           <NavLink
                             key={sub.name}
                             to={sub.href}
-                            className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-blue-50 transition text-gray-800"
+                            onClick={() => setOpenDropdown(null)}
                           >
+                            <sub.icon className="h-5 w-5 text-blue-600" />
                             {sub.name}
                           </NavLink>
                         )
                       )}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
-              ) : item.isHash ? (
+              ) : (
                 <button
                   key={item.name}
-                  onClick={() => handleNavigation(item.href, true)}
-                  className={`font-medium px-3 py-2 transition-colors ${
-                    isScrolled ? "text-gray-800 hover:text-blue-600" : "text-white hover:text-blue-200"
-                  }`}
+                  onClick={() => handleNavigation(item.href, item.isHash!)}
+                  className={`flex items-center gap-1 font-medium px-3 py-2 transition-colors ${
+                    isScrolled ? "text-black" : "text-white"
+                  } hover:text-yellow-300`}
                 >
+                  <item.icon className="h-4 w-4" />
                   {item.name}
                 </button>
-              ) : (
-                <NavLink
-                  key={item.name}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    `font-medium px-3 py-2 transition-colors ${
-                      isScrolled
-                        ? isActive ? "text-blue-600" : "text-gray-800 hover:text-blue-600"
-                        : isActive ? "text-blue-800" : "text-white hover:text-blue-200"
-                    }`
-                  }
-                >
-                  {item.name}
-                </NavLink>
               )
             )}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="ml-4 bg-yellow-600 text-white px-4 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors"
-            >
-              <a href="https://forms.gle/QekMLvWTsepzdASG9" target="_blank" rel="noreferrer">
-                Apply now
-              </a>
-            </motion.button>
           </div>
         </div>
 
-        {/* ===== Mobile Header ===== */}
+        {/* Mobile Header */}
         <div className="flex justify-between items-center lg:hidden">
           <Link to="/" className="flex items-center gap-2">
-            <img src={dsu_pic} alt="DSU Logo" className="h-12 w-16 object-contain" />
+            <img
+              src={dsu_pic}
+              alt="DSU Logo"
+              className="h-12 w-16 object-contain"
+            />
             <div className="flex flex-col">
-              <h1 className={`text-sm font-bold ${isScrolled ? "text-black" : "text-gray-100"}`}>
+              <h1
+                className={`text-sm font-bold ${
+                  isScrolled ? "text-black" : "text-white"
+                }`}
+              >
                 DSUUniversity
               </h1>
-              <p className={`text-xs font-semibold ${isScrolled ? "text-gray-900" : "text-gray-100"}`}>
-                School of Engineering&Technology
+              <p
+                className={`text-xs font-semibold ${
+                  isScrolled ? "text-gray-900" : "text-white"
+                }`}
+              >
+                School of Engineering & Technology
               </p>
             </div>
           </Link>
           <button
-            className={`p-2 rounded-md ${isScrolled ? "bg-gray-100 text-gray-800" : "bg-white/20 text-white"}`}
+            className={`p-2 rounded-md ${
+              isScrolled ? "bg-gray-100 text-gray-800" : "bg-white/20 text-white"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* ===== Mobile Menu ===== */}
+        {/* Mobile Menu Content */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden mt-3 bg-white shadow-xl p-4 rounded-b-md"
+            className="lg:hidden mt-3 bg-white shadow-xl p-4 rounded-b-md space-y-2 max-h-[80vh] overflow-y-auto"
           >
-            {navItems.map(item =>
+            {/* Navigation Items */}
+            <h3 className="font-bold text-lg text-blue-800 border-b pb-2 mb-2">
+              Navigation
+            </h3>
+            {navItems.map((item) =>
               item.subItems ? (
-                <div key={item.name} className="mb-2">
+                <div key={item.name} className="flex flex-col">
                   <button
-                    onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                    className="flex justify-between w-full px-4 py-2 text-gray-800 rounded hover:bg-gray-100 transition-colors"
+                    onClick={() =>
+                      setMobileSubMenu(
+                        mobileSubMenu === item.name ? null : item.name
+                      )
+                    }
+                    className="flex justify-between items-center w-full font-medium p-2 bg-gray-100 rounded hover:bg-gray-200"
                   >
-                    {item.name}
-                    <ChevronDown className={`ml-1 h-4 w-4 ${openDropdown === item.name ? "rotate-180" : ""}`} />
+                    <span className="flex items-center gap-2">
+                      <item.icon className="h-4 w-4" />
+                      {item.name}
+                    </span>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        mobileSubMenu === item.name ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                  {openDropdown === item.name && (
-                    <div className="pl-4 mt-1">
-                      {item.subItems.map(sub =>
-                        sub.href.startsWith("#") ? (
+                  {mobileSubMenu === item.name && (
+                    <div className="flex flex-col ml-4 mt-1 space-y-1">
+                      {item.subItems.map((sub) =>
+                        sub.isHash ? (
                           <button
                             key={sub.name}
                             onClick={() => handleNavigation(sub.href, true)}
-                            className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 rounded"
+                            className="flex items-center gap-2 p-2 rounded hover:bg-blue-50 transition text-gray-800 text-left"
                           >
+                            <sub.icon className="h-4 w-4 text-blue-600" />
                             {sub.name}
                           </button>
                         ) : (
                           <NavLink
                             key={sub.name}
                             to={sub.href}
-                            className="block w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 rounded"
-                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="flex items-center gap-2 p-2 rounded hover:bg-blue-50 transition text-gray-800"
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setMobileSubMenu(null);
+                            }}
                           >
+                            <sub.icon className="h-4 w-4 text-blue-600" />
                             {sub.name}
                           </NavLink>
                         )
@@ -237,47 +410,84 @@ const Header = () => {
                     </div>
                   )}
                 </div>
-              ) : item.isHash ? (
+              ) : (
                 <button
                   key={item.name}
-                  onClick={() => handleNavigation(item.href, true)}
-                  className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded mb-1"
+                  onClick={() => handleNavigation(item.href, item.isHash!)}
+                  className="flex items-center gap-2 p-2 font-medium text-gray-800 rounded hover:bg-blue-50 transition text-left w-full"
                 >
+                  <item.icon className="h-4 w-4" />
                   {item.name}
                 </button>
-              ) : (
-                <NavLink
-                  key={item.name}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    `block w-full text-left px-4 py-2 rounded mb-1 ${isActive ? "text-blue-600 font-medium" : "text-gray-800"}`
-                  }
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </NavLink>
               )
             )}
 
-            {/* Mobile Quick Links */}
-            <div className="mt-3 border-t border-gray-200 pt-2">
-              {quickLinks.map(link => (
-                <a
+            {/* Quick Links Section */}
+            <h3 className="font-bold text-lg text-blue-800 border-b pb-2 mt-4 mb-2">
+              Quick Links
+            </h3>
+            {quickLinks.map((link) =>
+              link.subItems ? (
+                <div key={link.name} className="flex flex-col">
+                  <button
+                    onClick={() =>
+                      setMobileQuickSubMenu(
+                        mobileQuickSubMenu === link.name ? null : link.name
+                      )
+                    }
+                    className="flex justify-between items-center w-full font-medium p-2 bg-gray-100 rounded hover:bg-gray-200"
+                  >
+                    <span className="flex items-center gap-2">
+                      <link.icon className="h-4 w-4" />
+                      {link.name}
+                    </span>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        mobileQuickSubMenu === link.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {mobileQuickSubMenu === link.name && (
+                    <div className="flex flex-col ml-4 mt-1 space-y-1">
+                      {link.subItems.map((sub) =>
+                        sub.isHash ? (
+                          <button
+                            key={sub.name}
+                            onClick={() => handleNavigation(sub.href, true)}
+                            className="flex items-center gap-2 p-2 rounded hover:bg-blue-50 transition text-gray-800 text-left"
+                          >
+                            <sub.icon className="h-4 w-4 text-blue-600" />
+                            {sub.name}
+                          </button>
+                        ) : (
+                          <NavLink
+                            key={sub.name}
+                            to={sub.href}
+                            className="flex items-center gap-2 p-2 rounded hover:bg-blue-50 transition text-gray-800"
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setMobileQuickSubMenu(null);
+                            }}
+                          >
+                            <sub.icon className="h-4 w-4 text-blue-600" />
+                            {sub.name}
+                          </NavLink>
+                        )
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button
                   key={link.name}
-                  href={link.href}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:text-yellow-500 hover:bg-gray-100 rounded transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => handleNavigation(link.href, link.isHash!)}
+                  className="flex items-center gap-2 p-2 font-medium text-gray-800 rounded hover:bg-blue-50 transition text-left w-full"
                 >
+                  <link.icon className="h-4 w-4" />
                   {link.name}
-                </a>
-              ))}
-            </div>
-
-            <button className="w-full mt-2 bg-yellow-600 text-white px-4 py-2 rounded-md font-medium hover:bg-yellow-700 transition-colors">
-              <a href="https://forms.gle/QekMLvWTsepzdASG9" target="_blank" rel="noreferrer">
-                Apply Now
-              </a>
-            </button>
+                </button>
+              )
+            )}
           </motion.div>
         )}
       </nav>
