@@ -78,12 +78,13 @@ const Header: React.FC = () => {
       name: "Facilities",
       icon: Users,
       subItems: [
-        { name: "Laboratories", href: "#facilities", isHash: true, icon: Trophy },
+        { name: "Laboratories", href: "/lab", isHash: false, icon: Trophy },
         { name: "Culturals and Sports", href: "/cul", isHash: false, icon: Star },
         { name: "Hostels", href: "#hostels", isHash: true, icon: Users },
         { name: "Cafeteria", href: "#cafeteria", isHash: true, icon: Award },
       ],
     },
+    
     { name: "Admissions", href: "#admissions", isHash: true, icon: Star },
     { name: "Contact", href: "#contact", isHash: true, icon: Users },
   ];
@@ -136,7 +137,7 @@ const Header: React.FC = () => {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-transparent shadow-md"
+        isScrolled ? "bg-blue-950 shadow-md" : "bg-transparent shadow-md"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -160,14 +161,14 @@ const Header: React.FC = () => {
   <div className="flex flex-col text-left">
     <h1
       className={`text-3xl font-extrabold ${
-        isScrolled ? "text-black" : "text-white"
+        isScrolled ? "text-yellow-400" : "text-white"
       }`}
     >
       Dhanalakshmi Srinivasan University
     </h1>
     <p
       className={`text-lg ${
-        isScrolled ? "text-gray-900 font-semibold" : "text-white"
+        isScrolled ? "text-white" : "text-white"
       }`}
     >
       School of Engineering & Technology
@@ -189,7 +190,7 @@ const Header: React.FC = () => {
                     <button
                       aria-expanded={openQuickDropdown === link.name}
                       className={`flex items-center gap-1 font-medium px-2 py-1 transition-colors ${
-                        isScrolled ? "text-black" : "text-white"
+                        isScrolled ? "text-white" : "text-white"
                       } hover:text-yellow-300`}
                     >
                       {link.name} <ChevronDown className="h-4 w-4" />
@@ -215,7 +216,7 @@ const Header: React.FC = () => {
                             <NavLink
                               key={sub.name}
                               to={sub.href}
-                              className="flex items-center gap-2 p-3 rounded-xl hover:bg-blue-50 transition text-gray-800"
+                              className="flex items-center gap-2 p-3 rounded-xl hover:bg-blue-50 transition text-white-800"
                               onClick={() => setOpenQuickDropdown(null)}
                             >
                               <sub.icon className="h-5 w-5 text-blue-600" />
@@ -231,7 +232,7 @@ const Header: React.FC = () => {
                     key={link.name}
                     onClick={() => handleNavigation(link.href, link.isHash!)}
                     className={`transition-colors font-medium ${
-                      isScrolled ? "text-black" : "text-white"
+                      isScrolled ? "text-white" : "text-white"
                     } hover:text-yellow-300`}
                   >
                     {link.name}
@@ -252,7 +253,7 @@ const Header: React.FC = () => {
                       setOpenDropdown(openDropdown === item.name ? null : item.name)
                     }
                     className={`flex items-center font-medium px-3 py-2 transition-colors ${
-                      isScrolled ? "text-black" : "text-white"
+                      isScrolled ? "text-white" : "text-white"
                     } hover:text-yellow-300`}
                   >
                     <item.icon className="h-4 w-4 mr-1" />
@@ -301,7 +302,7 @@ const Header: React.FC = () => {
                   key={item.name}
                   onClick={() => handleNavigation(item.href, item.isHash!)}
                   className={`flex items-center gap-1 font-medium px-3 py-2 transition-colors ${
-                    isScrolled ? "text-black" : "text-white"
+                    isScrolled ? "text-white" : "text-white"
                   } hover:text-yellow-300`}
                 >
                   <item.icon className="h-4 w-4" />
@@ -325,8 +326,7 @@ const Header: React.FC = () => {
                 className={`text-sm font-bold ${
                   isScrolled ? "text-black" : "text-white"
                 }`}
-              >
-                DSUUniversity
+              > DSU
               </h1>
               <p
                 className={`text-xs font-semibold ${
@@ -496,3 +496,4 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+

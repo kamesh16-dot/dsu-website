@@ -83,7 +83,7 @@ const StudentLife = () => {
   ];
 
   return (
-    <section id="student-life" className="py-24 bg-gray-50 mt-48" ref={ref}>
+    <section id="student-life" className="py-24 bg-gray-50 " ref={ref}>
       <div className="container mx-auto px-6">
 
         {/* Header */}
@@ -93,7 +93,7 @@ const StudentLife = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl font-extrabold text-gray-800 mb-6">Student Life & Achievements</h2>
+          <h2 className="text-5xl font-extrabold text-gray-800 mb-6 mt-48">Student Life & Achievements</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience a vibrant campus life filled with opportunities for growth, 
             learning, and achievement in both academic and extracurricular activities.
@@ -151,72 +151,11 @@ const StudentLife = () => {
         </motion.div>
 
         {/* Campus Activities */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-24"
-        >
-          <h3 className="text-4xl font-bold text-center text-gray-800 mb-12">Campus Activities & Life</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {activities.map((activity, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
-                className="relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
-              >
-                <img
-                  src={activity.image}
-                  alt={activity.name}
-                  className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-90 p-6 flex flex-col justify-end">
-                  <h4 className="text-white text-xl font-bold">{activity.name}</h4>
-                  <p className="text-white text-sm mt-2">{activity.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      
+      
 
         {/* Placement Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-3xl"
-        >
-          <h3 className="text-4xl font-bold text-center mb-12">Placement Excellence</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {placementStats.map((stat, index) => {
-              const StatIcon = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 1.1 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="bg-white bg-opacity-20 backdrop-blur-sm p-6 rounded-2xl mb-4 flex flex-col items-center">
-                    <StatIcon className="h-10 w-10 text-yellow-400 mb-2" />
-                    <div className="text-3xl font-extrabold">
-                      <CountUp end={stat.value} duration={2} suffix={stat.suffix} />
-                    </div>
-                  </div>
-                  <div className="text-blue-100 text-lg">{stat.label}</div>
-                </motion.div>
-              );
-            })}
-          </div>
-          <p className="text-center mt-12 text-blue-100 text-lg">
-            Our graduates are working at top companies worldwide, making significant contributions to technology and innovation.
-          </p>
-        </motion.div>
-
+       
       </div>
     </section>
   );

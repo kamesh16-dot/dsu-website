@@ -29,7 +29,7 @@ const Hero = () => {
           className="w-full h-full object-cover"
         >
           <source
-            src={video}
+            src="https://res.cloudinary.com/ds5x8xtyg/video/upload/v1757187409/DSU_30_SEC_V1_m0nklu.mp4"
             type="video/mp4"
           />
         </video>
@@ -39,23 +39,7 @@ const Hero = () => {
       </div>
 
       {/* ✨ Main Content */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6">
-        <div className="w-full text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
-            DSU <span className="text-yellow-400">School of Engineering</span>
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, repeat: Infinity, repeatType: "mirror" }}
-            className="text-lg md:text-2xl text-gray-100 font-light mb-8 tracking-wide drop-shadow-md"
-          >
-            Innovate • Create • Lead
-          </motion.p>
-        </div>
-      </div>
-
+      
       {/* 🎯 Sticky Left Side Buttons */}
      {/* 🎯 Sticky Left Side Buttons (SRM Style) */}
 

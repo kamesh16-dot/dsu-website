@@ -47,7 +47,7 @@ const EnquiryForm = () => {
         className="fixed right-0 top-1/2 -translate-y-1/2
                    bg-gradient-to-b from-yellow-500 to-yellow-600 
                    text-black px-1 py-6 font-bold tracking-wide
-                    shadow-xl hover:from-yellow-600 hover:to-yellow-700
+                   shadow-xl hover:from-yellow-600 hover:to-yellow-700
                    z-30 rotate-180 [writing-mode:vertical-rl] transition-all duration-300"
       >
         Book Admission
@@ -56,74 +56,87 @@ const EnquiryForm = () => {
       {/* Popup Modal */}
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div
-            className="relative bg-white/90 backdrop-blur-md w-[420px] 
-                       rounded-2xl shadow-2xl p-8 animate-scaleIn"
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-yellow-600 text-xl"
-            >
-              ✖
-            </button>
+          <div className="relative bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row w-[90%] max-w-4xl overflow-hidden animate-scaleIn">
+            
+            {/* Left Side Image */}
+            <div className="hidden md:block w-1/2">
+              <img
+                src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/leftSideImage.png"
+                alt="Admission"
+                className="h-full w-full object-cover"
+              />
+            </div>
 
-            {/* Title */}
-            <h2 className="text-2xl font-extrabold text-yellow-600 text-center mb-6">
-              Admission Enquiry
-            </h2>
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="border border-gray-300 p-3 rounded-xl focus:outline-none 
-                           focus:ring-2 focus:ring-yellow-500 transition"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                className="border border-gray-300 p-3 rounded-xl focus:outline-none 
-                           focus:ring-2 focus:ring-yellow-500 transition"
-                required
-              />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className="border border-gray-300 p-3 rounded-xl focus:outline-none 
-                           focus:ring-2 focus:ring-yellow-500 transition"
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                className="border border-gray-300 p-3 rounded-xl focus:outline-none 
-                           focus:ring-2 focus:ring-yellow-500 transition"
-                rows={3}
-                required
-              />
+            {/* Form Section */}
+            <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-8">
+              {/* Close Button */}
               <button
-                type="submit"
-                className="bg-gradient-to-r from-amber-700 to-yellow-600 text-black 
-                           py-3 rounded-xl font-semibold hover:from-yellow-600 
-                           hover:to-yellow-700 transition-all duration-300 shadow-md"
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-yellow-600 text-xl"
               >
-                🚀 Submit Enquiry
+                ✖
               </button>
-            </form>
+
+              {/* Title */}
+              <h2 className="text-3xl font-bold text-gray-900 text-center">
+                Admission Enquiry
+              </h2>
+              <p className="text-sm text-gray-500 mt-2 mb-6">
+                Fill in your details and we’ll get back to you
+              </p>
+
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 h-12 px-4 rounded-full focus:outline-none 
+                             focus:ring-2 focus:ring-yellow-500 text-gray-700"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 h-12 px-4 rounded-full focus:outline-none 
+                             focus:ring-2 focus:ring-yellow-500 text-gray-700"
+                  required
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 h-12 px-4 rounded-full focus:outline-none 
+                             focus:ring-2 focus:ring-yellow-500 text-gray-700"
+                  required
+                />
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 px-4 py-3 rounded-2xl focus:outline-none 
+                             focus:ring-2 focus:ring-yellow-500 text-gray-700"
+                  rows={3}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="w-full h-12 bg-gradient-to-r from-amber-600 to-yellow-500 
+                             text-white rounded-full font-semibold hover:opacity-90 
+                             transition-all duration-300 shadow-md"
+                >
+                  🚀 Submit Enquiry
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}

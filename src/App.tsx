@@ -19,6 +19,11 @@ import StickyNavButtons from './components/Sticky';
 import ChatBot from './components/chatbot';
 import InternshipPage from './components/internship';
 import Devloment from './components/Devlopment';
+import Placementcomponent from './components/Placementcomponent'
+import WhyChooseDsu from './components/Choose';
+import CampusActivities from './components/caa';
+import Life from './components/Life';
+import LatestEventsPage from './components/Latestevent';
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -31,11 +36,16 @@ function App() {
             <>
               <Hero />
               <About />
-              
-              <Facilities />
+               <WhyChooseDsu />
+              <Placementcomponent/>
+           
+             <LatestEventsPage/>
+            < CampusActivities/>
 
+             <Life/>
               <Admissions />
               <Contact />
+             
             </>
           } />
 
@@ -50,6 +60,7 @@ function App() {
                 <Route path='/hrdc' element={  <Hrdc />} />
                 <Route path='/intern' element={    <InternshipPage />} />
                 <Route path='/erc' element={    <Devloment />} />
+                  <Route path='/lab' element={     <Facilities />} />
         </Routes>
 
         <Footer />
