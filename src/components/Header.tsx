@@ -62,16 +62,15 @@ const Header: React.FC = () => {
         { name: "Objectives", href: "/placement", isHash: false, icon: Trophy },
         { name: "Vision & Mission", href: "/research", isHash: false, icon: Star },
         { name: "About HRDC", href: "/hrdc", isHash: false, icon: Award },
-        { name: "HRDC Faculty", href: "/clander", isHash: false, icon: Users },
+        { name: "HRDC Faculty", href: "/hr", isHash: false, icon: Users },
         { name: "Internship", href: "/intern", isHash: false, icon: Briefcase },
         { name: "Training & Placement Cell", href: "/placement-cell", isHash: false, icon: Trophy },
         { name: "Entrepreneur Development Cell", href: "/erc", isHash: false, icon: Briefcase },
-        { name: "Higher Education Cell", href: "/higher-education", isHash: false, icon: Star },
-        { name: "Career Guidance Cell", href: "/career-guidance", isHash: false, icon: Users },
-        { name: "Internship Drive", href: "/internship-drive", isHash: false, icon: Trophy },
-        { name: "Industrial Visit", href: "/industrial-visit", isHash: false, icon: Briefcase },
+      
+        { name: "Career Guidance Cell", href: "/care", isHash: false, icon: Users },
+        
         { name: "MoU", href: "/mou", isHash: false, icon: Award },
-        { name: "MoU Activity", href: "/mou-activity", isHash: false, icon: Award },
+        { name: "MoU Activity", href: "/moua", isHash: false, icon: Award },
       ],
     },
     {

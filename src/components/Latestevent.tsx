@@ -55,7 +55,7 @@ export default function LatestEventsPage() {
     <main className="min-h-screen bg-transparent py-12">
       <div className="max-w-7xl mx-auto px-4">
         <header className="mb-6">
-          <h1 className="text-3xl font-extrabold">Latest Events In Dsu</h1>
+          <h1 className="text-3xl font-extrabold">Latest Events /happen in dsu</h1>
          
         </header>
 

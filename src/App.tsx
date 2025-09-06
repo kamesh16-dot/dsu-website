@@ -24,6 +24,10 @@ import WhyChooseDsu from './components/Choose';
 import CampusActivities from './components/caa';
 import Life from './components/Life';
 import LatestEventsPage from './components/Latestevent';
+import CareerGuidance from './components/Carrier';
+import MoUPage from './components/Mou';
+import MouActivity from './components/Mouactivity';
+import HRDCFaculty from './components/Hrdcfacultiy';
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -60,7 +64,11 @@ function App() {
                 <Route path='/hrdc' element={  <Hrdc />} />
                 <Route path='/intern' element={    <InternshipPage />} />
                 <Route path='/erc' element={    <Devloment />} />
-                  <Route path='/lab' element={     <Facilities />} />
+                <Route path='/lab' element={     <Facilities />} />
+                <Route path='/care' element={     <CareerGuidance />} />
+                <Route path='/mou' element={     <MoUPage/>} />
+                 <Route path='/moua' element={     <MouActivity/>} />
+                  <Route path='/hr' element={     <HRDCFaculty />} />
         </Routes>
 
         <Footer />
