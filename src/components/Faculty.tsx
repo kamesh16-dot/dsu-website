@@ -1071,7 +1071,7 @@ const Faculty = () => {
     { icon: Mail, label: 'Industry Experience', value: '15+ Years' }
   ];
 
-  const containerVariants = {
+ const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -1093,17 +1093,32 @@ const Faculty = () => {
   };
 
   return (
-    <section id="faculty" className="py-48 bg-gray-500" ref={ref}>
+    <section id="faculty" className="py-48 bg-gray-500 " ref={ref}>
       <div className="container mx-auto px-6">
+
+        {/* HERO IMAGE (added) */}
+        <div className="relative w-full h-56 md:h-72 rounded-2xl overflow-hidden ">
+          <img
+            src="https://img.freepik.com/free-vector/gradient-blue-background_23-2149337039.jpg?semt=ais_hybrid&w=740&q=80"
+            alt="Faculty Hero"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg">
+              Meet Our School of Engineering & Technology Faculties
+            </h1>
+          </div>
+        </div>
+        {/* END HERO IMAGE */}
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-16 bg-gray"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-300 mb-6">
-           School of Engineering & Technology Faculties
-          </h2>
+         
           
         </motion.div>
 

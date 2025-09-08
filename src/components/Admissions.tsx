@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
+
 import { motion, useInView } from 'framer-motion';
-import { FileText, Users, Calendar, CheckCircle, ArrowRight, Download, Phone } from 'lucide-react';
+import { FileText, Users, Calendar, CheckCircle, ArrowRight } from 'lucide-react';
 
 const Admissions = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const isInView = useInView(ref, { once: true});
 
   const admissionSteps = [
     {
@@ -86,28 +87,41 @@ const Admissions = () => {
   };
 
   return (
-    <section id="admissions" className="py-20 bg-white" ref={ref}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Admissions 2024
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join the next generation of engineers at DSU School of Engineering. 
-            Follow our streamlined admission process to secure your future in technology.
-          </p>
-        </motion.div>
+    <section id="admissions" className="bg-white" ref={ref}>
+      {/* HERO */}
+      <div className="relative w-full h-[520px] md:h-[640px] overflow-hidden">
+        <img
+          src="https://www.shutterstock.com/image-photo/happy-pretty-gen-z-latin-600nw-2438190523.jpg"
+          alt="Campus hero"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/70 to-purple-800/60" />
+        <div className="relative z-10 container mx-auto px-6 h-full flex items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl text-white"
+          >
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Admissions 2026</h1>
+            <p className="mt-4 text-lg md:text-xl text-indigo-100">
+              Join the next generation of engineers at DSU School of Engineering. Follow our streamlined admission process to secure your future in technology.
+            </p>
 
+            <div className="mt-6 flex gap-3">
+              <a href="#apply" className="inline-flex items-center gap-2 bg-amber-400 text-black px-5 py-3 rounded-full font-semibold shadow hover:scale-105 transition">Apply Now</a>
+              <a href="#dates" className="inline-flex items-center gap-2 border border-white/20 text-white px-5 py-3 rounded-full hover:bg-white/5 transition">Important Dates</a>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 py-20">
         {/* Admission Process Steps */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Admission Process</h3>
@@ -117,8 +131,8 @@ const Admissions = () => {
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.08 }}
+                whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
                 className="relative bg-gray-50 p-6 rounded-xl hover:bg-white transition-all duration-300 group"
               >
                 {/* Step connector */}
@@ -155,9 +169,9 @@ const Admissions = () => {
 
         {/* Eligibility Criteria */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Eligibility & Fees</h3>
@@ -165,9 +179,9 @@ const Admissions = () => {
             {Object.entries(eligibilityCriteria).map(([key, program], index) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.08 }}
                 className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100"
               >
                 <h4 className="text-2xl font-bold text-blue-800 mb-2">{key}</h4>
@@ -202,9 +216,9 @@ const Admissions = () => {
 
         {/* Important Dates */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">Important Dates</h3>
@@ -213,9 +227,9 @@ const Admissions = () => {
               {importantDates.map((date, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={{ opacity: 0, x: -40 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.0 + index * 0.1 }}
+                  transition={{ duration: 0.6, delay: 0.95 + index * 0.06 }}
                   className="flex items-center justify-between bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center">
@@ -235,22 +249,7 @@ const Admissions = () => {
         </motion.div>
 
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl"
-        >
-          <div className="text-center">
-            <h3 className="text-3xl font-bold mb-4">Ready to Begin Your Engineering Journey?</h3>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-              Don't miss the opportunity to join one of India's premier engineering institutions. 
-              Apply now and take the first step towards your successful engineering career.
-            </p>
-            
-            
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

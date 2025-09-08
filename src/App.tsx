@@ -28,6 +28,9 @@ import CareerGuidance from './components/Carrier';
 import MoUPage from './components/Mou';
 import MouActivity from './components/Mouactivity';
 import HRDCFaculty from './components/Hrdcfacultiy';
+
+import Clubs from './components/Club';
+
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -47,7 +50,7 @@ function App() {
             < CampusActivities/>
 
              <Life/>
-              <Admissions />
+             
               <Contact />
              
             </>
@@ -69,6 +72,9 @@ function App() {
                 <Route path='/mou' element={     <MoUPage/>} />
                  <Route path='/moua' element={     <MouActivity/>} />
                   <Route path='/hr' element={     <HRDCFaculty />} />
+                     <Route path='/Admission' element={ <Admissions /> } />
+                   
+                       <Route path='/club' element={ <Clubs /> } />
         </Routes>
 
         <Footer />

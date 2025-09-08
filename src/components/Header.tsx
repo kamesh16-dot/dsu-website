@@ -79,12 +79,12 @@ const Header: React.FC = () => {
       subItems: [
         { name: "Laboratories", href: "/lab", isHash: false, icon: Trophy },
         { name: "Culturals and Sports", href: "/cul", isHash: false, icon: Star },
-        { name: "Hostels", href: "#hostels", isHash: true, icon: Users },
-        { name: "Cafeteria", href: "#cafeteria", isHash: true, icon: Award },
+        { name: "Hostels", href: "/Hostel", isHash: false, icon: Users },
+        { name: "Cafeteria", href: "/club", isHash: false, icon: Award },
       ],
     },
     
-    { name: "Admissions", href: "#admissions", isHash: true, icon: Star },
+    { name: "Admissions", href: "/Admission", isHash: false, icon: Star },
     { name: "Contact", href: "#contact", isHash: true, icon: Users },
   ];
 

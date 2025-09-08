@@ -61,7 +61,7 @@ const EnquiryForm = () => {
             {/* Left Side Image */}
             <div className="hidden md:block w-1/2">
               <img
-                src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/leftSideImage.png"
+                src="https://www.dsuniversity.ac.in/images/DSU-Ranking.jpg"
                 alt="Admission"
                 className="h-full w-full object-cover"
               />
@@ -133,7 +133,7 @@ const EnquiryForm = () => {
                              text-white rounded-full font-semibold hover:opacity-90 
                              transition-all duration-300 shadow-md"
                 >
-                  🚀 Submit Enquiry
+                   Submit Enquiry
                 </button>
               </form>
             </div>
