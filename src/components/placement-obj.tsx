@@ -176,35 +176,7 @@ const PlacementObjectives = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative max-w-5xl mx-auto px-4 py-20 text-center">
-        <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/SRM_Institute_of_Science_and_Technology_Logo.png/220px-SRM_Institute_of_Science_and_Technology_Logo.png')] bg-no-repeat bg-center opacity-5"></div>
-        <motion.h2 
-          className="text-4xl font-bold mb-6 text-blue-900"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          Ready to Hire Our Students?
-        </motion.h2>
-        <motion.p 
-          className="text-lg mb-10 max-w-2xl mx-auto text-gray-700"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Connect with our placement cell to schedule a recruitment drive or sign an MOU with our institution.
-        </motion.p>
-        <motion.button 
-          className="bg-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all flex items-center mx-auto shadow-lg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Contact Placement Cell
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </motion.button>
-      </section>
+     
     </div>
   );
 };

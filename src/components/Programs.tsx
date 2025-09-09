@@ -342,16 +342,16 @@ export default function Programs() {
 
                     <div className="mt-6 flex items-center justify-between">
                       <a
-                        href="#"
+                     href="https://forms.gle/QekMLvWTsepzdASG9"
                         className="text-sm font-semibold text-sky-600 hover:underline"
                       >
                         Learn more
                       </a>
-                      <motion.button
+                      <motion.button 
                         whileTap={{ scale: 0.97 }}
                         className="inline-flex items-center gap-2 bg-sky-50 text-sky-700 px-3 py-1 rounded-full text-sm"
                       >
-                        <Zap className="h-4 w-4" /> Apply
+                        <Zap className="h-4 w-4" />  <a href="https://forms.gle/QekMLvWTsepzdASG9">Apply.</a>
                       </motion.button>
                     </div>
                   </motion.article>
@@ -362,25 +362,7 @@ export default function Programs() {
         </motion.div>
 
         {/* CTA Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 bg-gradient-to-r from-sky-600 to-indigo-600 text-white p-8 rounded-2xl shadow-xl"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-xl font-bold">Ready to Start Your Engineering Journey?</h3>
-              <p className="mt-2 text-sky-100">Join thousands of successful engineers who started their careers at DSU School of Engineering.</p>
-            </div>
-            <div className="flex gap-3">
-              <a href="https://forms.gle/QekMLvWTsepzdASG9" target="_blank" rel="noreferrer" className="bg-white text-sky-700 px-5 py-2 rounded-full font-semibold shadow hover:scale-105 transition">
-                Join Now
-              </a>
-              <a href="#programs-list" className="px-4 py-2 rounded-full border border-white/30 text-white/90">Explore</a>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );

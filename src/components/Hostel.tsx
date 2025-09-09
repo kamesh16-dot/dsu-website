@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import  { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Home, Bed, Wifi, Coffee, ShieldCheck, MapPin, X } from 'lucide-react';
 

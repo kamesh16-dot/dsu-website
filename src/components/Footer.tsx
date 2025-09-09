@@ -21,7 +21,7 @@ const Footer = () => {
   ];
 
   const programs: ProgramItem[] = [
-    { name: 'Computer Science Engineering', href: '/program/cse' },
+    { name: 'Computer Science Engineering', href: '/program' },
     { name: 'Electronics & Communication', href: '/program/ece' },
     { name: 'Mechanical Engineering', href: '/program/mech' },
     { name: 'Civil Engineering', href: '/program/civil' },

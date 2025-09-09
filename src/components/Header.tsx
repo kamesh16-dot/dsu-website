@@ -60,11 +60,10 @@ const Header: React.FC = () => {
       icon: Trophy,
       subItems: [
         { name: "Objectives", href: "/placement", isHash: false, icon: Trophy },
-        { name: "Vision & Mission", href: "/research", isHash: false, icon: Star },
         { name: "About HRDC", href: "/hrdc", isHash: false, icon: Award },
         { name: "HRDC Faculty", href: "/hr", isHash: false, icon: Users },
         { name: "Internship", href: "/intern", isHash: false, icon: Briefcase },
-        { name: "Training & Placement Cell", href: "/placement-cell", isHash: false, icon: Trophy },
+        { name: "Training & Placement Cell", href: "tap", isHash: false, icon: Trophy },
         { name: "Entrepreneur Development Cell", href: "/erc", isHash: false, icon: Briefcase },
       
         { name: "Career Guidance Cell", href: "/care", isHash: false, icon: Users },
@@ -79,8 +78,7 @@ const Header: React.FC = () => {
       subItems: [
         { name: "Laboratories", href: "/lab", isHash: false, icon: Trophy },
         { name: "Culturals and Sports", href: "/cul", isHash: false, icon: Star },
-        { name: "Hostels", href: "/Hostel", isHash: false, icon: Users },
-        { name: "Cafeteria", href: "/club", isHash: false, icon: Award },
+        { name: "Club", href: "/club", isHash: false, icon: Award },
       ],
     },
     
@@ -89,30 +87,48 @@ const Header: React.FC = () => {
   ];
 
   // Quick Links
+
   const quickLinks = [
     {
       name: "Student",
       icon: Users,
       subItems: [
         { name: "Students' Affairs", href: "/Sa", isHash: false, icon: Users },
-        { name: "Academic Bank of Credits", href: "/student-exams", isHash: false, icon: Star },
-        { name: "Scholarship", href: "/scholarship", isHash: false, icon: Trophy },
+        { name: "Academic Bank of Credits", href: "/abc", isHash: false, icon: Star },
+        { name: "Scholarship", href: "/sch", isHash: false, icon: Trophy },
         { name: "Student-achievment", href: "/Students", isHash: false, icon: Award },
       ],
     },
+    
+    { name: "Faculties", href: "/faculty", isHash: false, icon: Users },
     {
-      name: "Faculty Login",
+      name: "Research-center",
       icon: Users,
       subItems: [
-        { name: "Faculties", href: "/faculty", isHash: false, icon: Users },
-        { name: "Faculty Portal", href: "/faculty-portal", isHash: false, icon: Star },
+       
+        { name: "reaserch-devolpment-cell", href: "/research", isHash: false, icon: Star },
+          { name: "Patents", href: "/Patent", isHash: false, icon: Star },
+            { name: "foreign-collabration", href: "/collab", isHash: false, icon: Star },
+               { name: "industry-collabration", href: "/icollab", isHash: false, icon: Star },
+                  { name: "central-facilites", href: "/rf", isHash: false, icon: Star },
+      ],
+
+    },
+
+    {
+      name: "more",
+      icon: Users,
+      subItems: [
+       
+        { name: "Acadamic-Clander", href: "/clander", isHash: false, icon: Star },
+          { name: "Gallery", href: "/Gallery", isHash: false, icon: Star },
+        
       ],
     },
-    { name: "Alumni", href: "#alumni", isHash: true, icon: Users },
-    { name: "Careers", href: "#careers", isHash: true, icon: Briefcase },
   ];
 
   // Navigation handler
+
   const handleNavigation = (href: string, isHash: boolean) => {
     if (isHash) {
       if (location.pathname !== "/") {
@@ -323,13 +339,13 @@ const Header: React.FC = () => {
             <div className="flex flex-col">
               <h1
                 className={`text-sm font-bold ${
-                  isScrolled ? "text-black" : "text-white"
+                  isScrolled ? "text-yellow-500" : "text-white"
                 }`}
-              > DSU
+              > Dhanalakshmi srinivasan university
               </h1>
               <p
                 className={`text-xs font-semibold ${
-                  isScrolled ? "text-gray-900" : "text-white"
+                  isScrolled ? "text-white" : "text-white"
                 }`}
               >
                 School of Engineering & Technology
@@ -355,9 +371,7 @@ const Header: React.FC = () => {
             className="lg:hidden mt-3 bg-white shadow-xl p-4 rounded-b-md space-y-2 max-h-[80vh] overflow-y-auto"
           >
             {/* Navigation Items */}
-            <h3 className="font-bold text-lg text-blue-800 border-b pb-2 mb-2">
-              Navigation
-            </h3>
+            
             {navItems.map((item) =>
               item.subItems ? (
                 <div key={item.name} className="flex flex-col">
@@ -422,9 +436,7 @@ const Header: React.FC = () => {
             )}
 
             {/* Quick Links Section */}
-            <h3 className="font-bold text-lg text-blue-800 border-b pb-2 mt-4 mb-2">
-              Quick Links
-            </h3>
+          
             {quickLinks.map((link) =>
               link.subItems ? (
                 <div key={link.name} className="flex flex-col">

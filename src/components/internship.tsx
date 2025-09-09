@@ -92,21 +92,30 @@ const InternshipPage = () => {
     <div className="bg-gray-50 text-gray-900 ">
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-        <div className="max-w-5xl mx-auto text-center px-6">
-          <motion.h1 
-            className="text-4xl md:text-5xl font-serif font-bold mb-6 mt-32"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Internship Opportunities
-          </motion.h1>
-          <p className="text-lg text-blue-100 max-w-3xl mx-auto ">
-            HRDC provides diverse internship opportunities across industries, 
-            preparing students with real-world experience and skills.
-          </p>
-        </div>
-      </section>
+      {/* Hero Section */}
+<section 
+  className="relative bg-gradient-to-r from-blue-900/80 to-blue-700/80 text-white py-20"
+  style={{
+    backgroundImage: `url("https://assets.telegraphindia.com/telegraph/2022/Mar/1648546454_internshala1.jpg")`, // <-- hero image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Overlay (optional, for dark effect) */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  <div className="relative max-w-5xl mx-auto text-center px-6">
+    <motion.h1 
+      className="text-4xl md:text-5xl font-serif font-bold mb-6 mt-40"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      Internship Opportunities
+    </motion.h1>
+    
+  </div>
+</section>
+
 
       {/* Internship Cards */}
       <section className="max-w-6xl mx-auto px-6 py-16 space-y-12">

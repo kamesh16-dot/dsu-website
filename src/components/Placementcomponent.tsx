@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Briefcase, TrendingUp, Users, Award } from "lucide-react";
 
@@ -71,7 +71,7 @@ const Placement = ({ companyLogos = defaultCompanyLogos }) => {
   useEffect(() => {
     const el = trackBRef.current;
     if (!el) return;
-    el.style.transform = "scaleX(-1)";
+    el.style.transform = "scaleX(-2)";
     // flip each child back so images aren't mirrored
     Array.from(el.querySelectorAll(".marquee-item")).forEach((child) => {
       child.style.transform = "scaleX(-1)";
@@ -101,7 +101,7 @@ const Placement = ({ companyLogos = defaultCompanyLogos }) => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.65, delay: 0.08 }}
+          transition={{ duration: 0.98, delay: 9.08 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"
         >
           {statsConfig.map((s, i) => {
@@ -125,7 +125,7 @@ const Placement = ({ companyLogos = defaultCompanyLogos }) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.98 }}
         >
           <h3 className="text-center text-lg font-semibold text-gray-800 mb-4">
             Top Recruiters & Partners
@@ -167,30 +167,34 @@ const Placement = ({ companyLogos = defaultCompanyLogos }) => {
               </div>
             </div>
 
+
+            
+
             {/* Row B - reversed visual direction (slower) */}
-            <div className="relative overflow-hidden rounded-xl bg-white/60 px-3 py-4">
+               <div className="relative overflow-hidden rounded-xl bg-white/60 px-3 py-4">
               <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white to-transparent z-10" />
               <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white to-transparent z-10" />
 
+              {/* track wrapper keeps overflow hidden; track itself is max-content (no page overflow) */}
               <div
-                ref={trackBRef}
                 className="marquee-track flex gap-3 items-center will-change-transform box-border"
-                style={{ animation: "marquee-left 28s linear infinite" }}
+                style={{ animation: "marquee-left 18s linear infinite" }}
                 onMouseEnter={(e) => (e.currentTarget.style.animationPlayState = "paused")}
                 onMouseLeave={(e) => (e.currentTarget.style.animationPlayState = "running")}
                 onTouchStart={(e) => (e.currentTarget.style.animationPlayState = "paused")}
                 onTouchEnd={(e) => (e.currentTarget.style.animationPlayState = "running")}
               >
-                {[...rowB, ...rowB].map((logo, idx) => {
+                {/* duplicate the inline items — track width is determined by content (max-content) */}
+                {[...rowA, ...rowA].map((logo, idx) => {
                   const src = resolveLogoSrc(logo);
                   return (
                     <div
-                      key={`b-${idx}`}
+                      key={`a-${idx}`}
                       className="marquee-item shrink-0 w-28 sm:w-36 h-16 sm:h-20 flex items-center justify-center p-1 bg-white/90 rounded-md"
                     >
                       <img
                         src={src}
-                        alt={`company-b-${idx}`}
+                        alt={`company-${idx}`}
                         className="max-h-10 max-w-full object-contain"
                         loading="lazy"
                         draggable={false}
@@ -200,6 +204,7 @@ const Placement = ({ companyLogos = defaultCompanyLogos }) => {
                 })}
               </div>
             </div>
+           
           </div>
 
           <style>{`

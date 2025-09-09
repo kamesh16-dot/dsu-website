@@ -5,19 +5,32 @@ const EDCPage = () => {
   return (
     <div className="bg-gradient-to-b from-gray-100 via-gray-50 to-white min-h-screen">
       {/* Hero Section */}
-      <motion.section
-        className="bg-blue-900 text-white py-20 px-6 md:px-16 lg:px-32 text-center rounded-b-3xl shadow-lg"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 mt-32">
-          Entrepreneur Development Cell (EDC)
-        </h1>
-        <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-          Empowering students to become innovative and ethical entrepreneurs, shaping the future of industry and society.
-        </p>
-      </motion.section>
+     {/* Hero Section */}
+<motion.section
+  className="relative text-white py-20 px-6 md:px-16 lg:px-32 text-center rounded-b-3xl shadow-lg overflow-hidden"
+  initial={{ opacity: 0, y: -30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  style={{
+    backgroundImage: `url("https://ied.eu/wp-content/uploads/2015/07/Untitled-11.png")`, // 🔹 Replace with your hero image URL
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-blue-900/70"></div>
+
+  {/* Content */}
+  <div className="relative z-10">
+    <h1 className="text-4xl md:text-5xl font-extrabold mb-4 mt-32">
+      Entrepreneur Development Cell (EDC)
+    </h1>
+    <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+      Empowering students to become innovative and ethical entrepreneurs, shaping the future of industry and society.
+    </p>
+  </div>
+</motion.section>
+
 
       <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-32 py-16 space-y-12">
         {/* Vision & Mission Grid */}

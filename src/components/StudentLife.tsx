@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import  { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Trophy, Briefcase, Star, Award, Users, Calendar } from 'lucide-react';
 import CountUp from 'react-countup';
@@ -83,8 +83,32 @@ const StudentLife = () => {
   ];
 
   return (
-    <section id="student-life" className="py-24 bg-gray-50 " ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="student-life" className="bg-gray-50" ref={ref}>
+
+      {/* ✅ Hero Image */}
+      <div className="relative w-full h-[70vh]">
+        <img 
+          src="https://st.depositphotos.com/59134350/57550/v/450/depositphotos_575505546-stock-illustration-graduating-students-pupil-hands-gown.jpg" 
+          alt="Student Life Hero" 
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center text-white"
+          >
+            <h1 className="text-5xl font-extrabold mb-4">Achievements</h1>
+            <p className="text-lg max-w-2xl mx-auto">
+              A vibrant campus that blends academics, research, and cultural excellence.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 ">
 
         {/* Header */}
         <motion.div
@@ -93,11 +117,7 @@ const StudentLife = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl font-extrabold text-gray-800 mb-6 mt-48">Student Life & Achievements</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Experience a vibrant campus life filled with opportunities for growth, 
-            learning, and achievement in both academic and extracurricular activities.
-          </p>
+          
         </motion.div>
 
         {/* Achievement Timeline */}
@@ -149,13 +169,6 @@ const StudentLife = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Campus Activities */}
-      
-      
-
-        {/* Placement Statistics */}
-       
       </div>
     </section>
   );

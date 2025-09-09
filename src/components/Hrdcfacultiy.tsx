@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-// HRDC Faculty page with faculty name + photo + position
+// HRDC Faculty page with full-width hero image + blue gradient overlay, search, accessible cards, image fallback, and modal
 export default function HRDCFaculty() {
   const faculty = [
     {
@@ -59,48 +59,158 @@ export default function HRDCFaculty() {
       position: 'Assistant Professor',
       img: 'https://www.dsuniversity.ac.in/dsu-university/datas/staff_photos/Mr__V__Venkadesh.jpeg'
     }
-  ];
+  ]
+
+  const [query, setQuery] = useState('')
+  const [selected, setSelected] = useState(null)
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return faculty
+    return faculty.filter(f => f.name.toLowerCase().includes(q) || f.position.toLowerCase().includes(q))
+  }, [query])
+
+  const cardVariant = {
+    hidden: { opacity: 0, y: 8 },
+    visible: { opacity: 1, y: 0 }
+  }
+
+  function initialsFallback(name, size = 256) {
+    const initials = (name || 'A')
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(s => s[0].toUpperCase())
+      .join('')
+
+    const bg = '#E6EEF8'
+    const fg = '#0F172A'
+    const svg = `<?xml version='1.0' encoding='utf-8'?><svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'><rect width='100%' height='100%' fill='${bg}' rx='20' /><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, \"Segoe UI\", Roboto' font-size='${size / 3}' fill='${fg}'>${initials}</text></svg>`
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+  }
+
+  function handleImgError(e, name) {
+    e.currentTarget.src = initialsFallback(name, 512)
+  }
 
   return (
-    <section id="hrdc" className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-16">
-      <div className="container mx-auto px-6">
-        {/* Hero Section */}
-        <div className="text-center mb-14">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800">HRDC Faculty</h1>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-            Meet the dedicated faculty of the Human Resource Development Centre.
-          </p>
-        </div>
-
-        {/* Faculty Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {faculty.map((member, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-lg transition text-center"
-            >
-              <div className="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-slate-100 shadow-md">
-                <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
-              </div>
-              <h3 className="text-lg font-semibold text-slate-800">{member.name}</h3>
-              <p className="text-sm text-slate-500 mt-1">{member.position}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-2xl shadow-lg text-center">
-          <h2 className="text-2xl font-bold mb-4">Collaborate with HRDC</h2>
-          <p className="mb-6 text-indigo-100 max-w-2xl mx-auto">
-            Partner with HRDC for tailored faculty development programs, advanced workshops, and impactful educational innovations.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:hrdc@dsu.edu.in" className="bg-white text-indigo-700 px-6 py-3 rounded-full font-semibold shadow hover:scale-105 transition">Contact Us</a>
-            <a href="#" className="px-6 py-3 rounded-full border border-white/30 text-white hover:bg-white/10 transition">View Calendar</a>
+    <section id="hrdc" className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Full-width Hero Section with blue gradient overlay */}
+      <div className="relative w-full h-64 md:h-80 lg:h-[28rem] mb-12 shadow-lg">
+        <img
+          src="https://nyggs.com/images/erp/get-valuable.webp"
+          alt="HRDC Hero"
+          className="absolute inset-0 w-full h-full bg-cover bg-center object-cover"
+          loading="lazy"
+        />
+        {/* Blue Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-700/70 to-blue-500/60"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center text-white px-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold drop-shadow mt-12">HRDC Faculty</h1>
+         
           </div>
         </div>
       </div>
+
+      <div className="container mx-auto px-6 py-16">
+        {/* Search and CTA row */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+          <label htmlFor="search" className="sr-only">Search faculty</label>
+          <div className="flex items-center gap-3 w-full sm:w-1/2">
+            <input
+              id="search"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="Search by name or position..."
+              className="w-full px-4 py-2 rounded-full border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            />
+          </div>
+
+          
+        </div>
+
+        {/* Faculty Cards */}
+        <motion.div initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filtered.map((member, i) => (
+            <motion.button
+              key={member.name + i}
+              variants={cardVariant}
+              whileHover={{ y: -6, scale: 1.02 }}
+              whileTap={{ scale: 0.99 }}
+              onClick={() => setSelected(member)}
+              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm text-left focus:outline-none focus:ring-4 focus:ring-blue-100"
+              aria-label={`Open details for ${member.name}`}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border-4 border-slate-50 shadow">
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    onError={e => handleImgError(e, member.name)}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-800">{member.name}</h3>
+                  <p className="text-sm text-slate-500 mt-1">{member.position}</p>
+                  <p className="text-xs text-slate-400 mt-1">Click to view details</p>
+                </div>
+              </div>
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {filtered.length === 0 && (
+          <div className="mt-8 text-center text-slate-500">No faculty matched &quot;{query}&quot;.</div>
+        )}
+
+        <AnimatePresence>
+          {selected && (
+            <motion.div
+              key="modal"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div className="absolute inset-0 bg-black/40" onClick={() => setSelected(null)} />
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 20, opacity: 0 }}
+                className="relative bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl z-10"
+                role="dialog"
+                aria-modal="true"
+                aria-label={`Details for ${selected.name}`}
+              >
+                <div className="flex gap-4 items-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden border shadow">
+                    <img src={selected.img} alt={selected.name} onError={e => handleImgError(e, selected.name)} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">{selected.name}</h3>
+                    <p className="text-sm text-slate-500">{selected.position}</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 text-slate-600">
+                  <p>This is a brief detail pane. Add more fields like qualifications, research interests or contact info in the data model to expand this view.</p>
+                </div>
+
+                <div className="mt-6 flex justify-end gap-3">
+                  <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-full border border-slate-200">Close</button>
+                  <a href={`mailto:hrdc@dsu.edu.in?subject=Contact%20${encodeURIComponent(selected.name)}`} className="px-4 py-2 rounded-full bg-blue-600 text-white">Email</a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        
+      </div>
     </section>
-  );
+  )
 }

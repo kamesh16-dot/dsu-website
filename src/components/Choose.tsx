@@ -74,7 +74,7 @@ const WhyChooseDsu = () => {
       </div>
 
       {/* MAIN CONTENT (use container with px to avoid horizontal overflow) */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-10 md:-mt-12">
+      <div className="max-w-6xl lg:mt-10  mx-auto px-4 sm:px-6  sm:mt-28 md:-mt-12">
         <motion.div initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="grid gap-6 md:grid-cols-3">
           <div className="md:col-span-2 grid gap-6">
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
@@ -85,7 +85,7 @@ const WhyChooseDsu = () => {
                     <div className={`absolute -left-3 top-1/2 -translate-y-1/2 w-2 h-16 sm:h-20 rounded-r-full bg-gradient-to-b ${r.color}`} />
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="p-2 sm:p-3 rounded-lg bg-white/6"><Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" /></div>
-                      <div><h3 className="text-white font-semibold text-sm sm:text-base">{r.title}</h3><p className="mt-1 text-xs sm:text-sm text-slate-300">{r.desc}</p></div>
+                      <div><h3 className="text-white font-semibold text-sm sm:text-base">{r.title}</h3><p className="mt-1 text-xs sm:text-sm text-yellow-300">{r.desc}</p></div>
                     </div>
                   </motion.article>
                 );
@@ -96,8 +96,8 @@ const WhyChooseDsu = () => {
               {reasons.slice(4).map((r) => {
                 const Icon = r.icon;
                 return (
-                  <motion.article key={r.title} whileHover={{ scale: 1.02 }} className="rounded-xl p-4 sm:p-5 bg-slate-800/50 ring-1 ring-white/6">
-                    <div className="flex items-start gap-3"><div className="p-2 sm:p-3 rounded-lg bg-white/6"><Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" /></div><div><h3 className="text-white font-semibold text-sm sm:text-base">{r.title}</h3><p className="mt-1 text-xs sm:text-sm text-slate-300">{r.desc}</p></div></div>
+                  <motion.article key={r.title} whileHover={{ scale: 1.02 }} className="rounded-xl p-4 sm:p-5 bg-slate-900/50 ring-1 ring-white/6">
+                    <div className="flex items-start gap-3"><div className="p-2 sm:p-3 rounded-lg bg-white/6"><Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" /></div><div><h3 className="text-white font-semibold text-sm sm:text-base">{r.title}</h3><p className="mt-1 text-xs sm:text-sm text-yellow-300">{r.desc}</p></div></div>
                   </motion.article>
                 );
               })}
@@ -108,9 +108,9 @@ const WhyChooseDsu = () => {
             <div className="rounded-2xl p-4 md:p-6 bg-gradient-to-tr from-slate-900/70 to-slate-800/60 ring-1 ring-white/6 shadow-2xl">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h4 className="text-white text-lg md:text-xl font-bold">Programs & Skill Paths</h4>
+                  <h4 className="text-white text-lg md:text-xl  font-bold">Programs & Skill Paths</h4>
                   <p className="mt-1 text-slate-300 text-xs md:text-sm">Undergraduate, postgraduate & research with industry-driven skilling programs.</p>
-                </div>
+                </div> 
                 <div className="inline-flex p-2 md:p-3 rounded-lg bg-white/5"><Sparkles className="w-5 h-5 md:w-6 md:h-6 text-amber-300" /></div>
               </div>
 

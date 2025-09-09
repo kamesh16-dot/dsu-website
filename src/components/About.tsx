@@ -165,7 +165,7 @@ export default function AboutRedesign() {
 
         {/* Statistics grid */}
         <section className="mb-12">
-          <h3 className="text-2xl font-bold text-slate-900 mb-6">By the numbers</h3>
+   
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {stats.map((s, i) => {
@@ -194,21 +194,7 @@ export default function AboutRedesign() {
         </section>
 
         {/* Callout / CTA */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.7 }}
-          className="bg-gradient-to-r from-sky-50 via-white to-indigo-50 p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4"
-        >
-          <div>
-            <h4 className="text-lg font-bold text-slate-900">Ready to start your engineering journey?</h4>
-            <p className="text-slate-600 mt-1">Apply now or schedule a campus visit to experience our labs and community firsthand.</p>
-          </div>
-          <div className="flex-shrink-0 flex gap-3">
-            <a className="inline-flex items-center px-4 py-2 bg-sky-600 text-white rounded-md shadow hover:bg-sky-700 transition" href="#apply">Apply Now</a>
-            <a className="inline-flex items-center px-4 py-2 border border-slate-200 rounded-md text-slate-700 hover:shadow-sm transition" href="#visit">Schedule Visit</a>
-          </div>
-        </motion.div>
+       
       </div>
     </section>
   );

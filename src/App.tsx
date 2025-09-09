@@ -21,16 +21,22 @@ import InternshipPage from './components/internship';
 import Devloment from './components/Devlopment';
 import Placementcomponent from './components/Placementcomponent'
 import WhyChooseDsu from './components/Choose';
-import CampusActivities from './components/caa';
 import Life from './components/Life';
 import LatestEventsPage from './components/Latestevent';
 import CareerGuidance from './components/Carrier';
 import MoUPage from './components/Mou';
 import MouActivity from './components/Mouactivity';
 import HRDCFaculty from './components/Hrdcfacultiy';
-
+import ABCPage from './components/Acadamiccredit';
 import Clubs from './components/Club';
-
+import PatentsPage from './components/Patent';
+import Collbaration from './components/Collabration'
+import Icollab from './components/Industrial'
+import Rfaclities from './components/Rfaclities'
+import ScholarshipPage from './components/Scholarship';
+import TrainingPlacementPage from './components/Trainingplacement';
+import Gallery from './components/Gallery'
+import Photos from './components/Photos'
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -47,7 +53,7 @@ function App() {
               <Placementcomponent/>
            
              <LatestEventsPage/>
-            < CampusActivities/>
+          
 
              <Life/>
              
@@ -66,15 +72,23 @@ function App() {
                 <Route path='/placement' element={  <Placement />} />
                 <Route path='/hrdc' element={  <Hrdc />} />
                 <Route path='/intern' element={    <InternshipPage />} />
-                <Route path='/erc' element={    <Devloment />} />
+                <Route path='/erc' element={   <Devloment />} />
                 <Route path='/lab' element={     <Facilities />} />
                 <Route path='/care' element={     <CareerGuidance />} />
                 <Route path='/mou' element={     <MoUPage/>} />
                  <Route path='/moua' element={     <MouActivity/>} />
                   <Route path='/hr' element={     <HRDCFaculty />} />
                      <Route path='/Admission' element={ <Admissions /> } />
-                   
+                    <Route path='/abc' element={ <ABCPage /> } />
                        <Route path='/club' element={ <Clubs /> } />
+                        <Route path='/patent' element={ <PatentsPage /> } />
+                           <Route path='/collab'  element={ <Collbaration/> } />
+                             <Route path='/icollab' element={ <Icollab/> } />
+                                <Route path='/rf' element={ <Rfaclities/> } />
+                                  <Route path='/sch' element={ <ScholarshipPage/> } />
+                                   <Route path='/tap' element={ <TrainingPlacementPage/> } />
+                                       <Route path='/Gallery' element={ <Gallery/> } />
+                                           <Route path='/Photos' element={ <Photos/> } />
         </Routes>
 
         <Footer />

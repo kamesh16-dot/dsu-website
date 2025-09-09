@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
-import video from '../assets/DSU_30 SEC_V1.mp4'
+import { useLocation } from "react-router-dom";
 
 const Hero = () => {
   const location = useLocation();
   const [showApply, setShowApply] = useState(true);
 
   useEffect(() => {
-    // Show Apply Now only on the Hero page ("/")
     if (location.pathname === "/") {
       setShowApply(true);
     } else {
@@ -18,7 +16,6 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex flex-col overflow-hidden">
-      
       {/* 🎥 Background */}
       <div className="absolute inset-0">
         <video
@@ -34,16 +31,31 @@ const Hero = () => {
           />
         </video>
 
-        {/* Subtle gradient */}
+        {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70"></div>
       </div>
 
-      {/* ✨ Main Content */}
-      
-      {/* 🎯 Sticky Left Side Buttons */}
-     {/* 🎯 Sticky Left Side Buttons (SRM Style) */}
+      {/* ✨ Main Content on Left Side */}
+      <div className="relative z-20 flex flex-col justify-center h-full px-8 md:px-16 lg:px-24 max-w-2xl">
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-5xl md:text-7xl font-extrabold text-white leading-tight"
+        >
+          <span className="block text-blue-400">Engineering</span>
+          <span className="block text-yellow-400">& Technology</span>
+        </motion.h1>
 
-
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-6 text-lg md:text-2xl text-gray-200 font-light"
+        >
+          🔬 Innovate • 🚀 Create • 🎓 Lead the Future
+        </motion.p>
+      </div>
 
       {/* 🎓 Admission Ticker */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-blue-900 bg-opacity-10 py-1 z-20">
@@ -55,13 +67,13 @@ const Hero = () => {
             🌟 Secure Your Future at DSU
           </span>
           <span className="mx-6 text-white font-semibold text-sm uppercase">
-            B.Tech  Admissions Open 2025 • Apply Now!
+            B.Tech Admissions Open 2025 • Apply Now!
           </span>
           <span className="mx-6 text-white font-semibold text-sm uppercase">
-            m.Tech  Admissions Open 2025 • Apply Now!
+            M.Tech Admissions Open 2025 • Apply Now!
           </span>
           <span className="mx-6 text-white font-semibold text-sm uppercase">
-            P.h.d  Admissions Open 2025 • Apply Now!
+            Ph.D Admissions Open 2025 • Apply Now!
           </span>
           <span className="mx-6 text-white font-semibold text-sm uppercase">
             🎓 Join Fast

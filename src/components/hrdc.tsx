@@ -46,30 +46,17 @@ const HRDCPage = () => {
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white pt-28 pb-32">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-20"></div>
+         <div className="absolute inset-0 bg-[url('https://buzzflick.com/wp-content/uploads/2022/01/How-Human-Resources-are-Using-2D-3D-Animation-1-1-1.webp')] bg-cover bg-center opacity-30"></div>
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <motion.h1 
-            className="text-5xl md:text-6xl font-serif font-bold  mt-12 leading-tight mb-6"
+            className="text-5xl md:text-6xl font-serif font-bold  mt-24 leading-tight mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
             Human Resource Development Centre (HRDC)
           </motion.h1>
-          <motion.p 
-            className="text-xl max-w-3xl mx-auto text-blue-100 mb-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Empowering students through training and industry collaboration to 
-            shape future-ready professionals.
-          </motion.p>
-          <motion.button 
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-8 py-3 rounded-full font-semibold shadow-lg hover:from-yellow-500 hover:to-yellow-600 transition-all"
-            whileHover={{ scale: 1.05 }}
-          >
-            Explore HRDC <ArrowRight className="ml-2 h-5 w-5 inline" />
-          </motion.button>
+          
+         
         </div>
       </section>
 
@@ -157,19 +144,7 @@ const HRDCPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="text-center py-20 relative bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/en/0/0e/SRM_Institute_of_Science_and_Technology_logo.png')] bg-center bg-contain bg-no-repeat"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h2 className="text-4xl font-serif font-bold mb-6">Partner With Us</h2>
-          <p className="text-lg mb-8">Collaborate with HRDC for training, talks, and industry partnerships.</p>
-          <motion.button 
-            className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 px-10 py-4 rounded-full font-bold shadow-lg hover:from-yellow-500 hover:to-yellow-600 transition"
-            whileHover={{ scale: 1.05 }}
-          >
-            Contact HRDC <ArrowRight className="ml-2 h-5 w-5 inline" />
-          </motion.button>
-        </div>
-      </section>
+
 
     </div>
   );

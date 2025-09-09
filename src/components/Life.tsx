@@ -19,11 +19,7 @@ const cardData = [
     youtube: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
     id: "ysz5S6PUM-U",
   },
-    {
-    title: "Onam function",
-    youtube: "https://youtu.be/BZ8pw2uwKF0?si=1LO8RxeqSu3eoDhH",
-    id: "BZ8pw2uwKF0",
-  }
+   
 ];
 
 export default function LifeAtDSUPage() {
@@ -34,9 +30,7 @@ export default function LifeAtDSUPage() {
       <div className="max-w-6xl mx-auto px-4 py-8 relative">
         <header className="mb-8 text-center">
           <h1 className="text-4xl font-extrabold">Campus Life @ DSU</h1>
-          <h3 className="mt-2 text-slate-700 text-lg">
-             Celebrate our vibrant campus culture through moments captured in Shorts!
-          </h3>
+        
         </header>
 
         <style>{`
@@ -44,7 +38,7 @@ export default function LifeAtDSUPage() {
 
           @keyframes marqueeScroll { 
             0% { transform: translateX(0%); } 
-            100% { transform: translateX(-50%); } 
+            100% { transform: translateX(-30%); } 
           }
         `}</style>
 
