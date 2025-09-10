@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { BookOpen, Microscope, Brain, Cpu, Wrench, Zap } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Updated Programs component with a hero image and refreshed design
 export default function Programs() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.12 });
+  const usenavigate = useNavigate()
 
   const programs = [
     {
@@ -274,12 +276,12 @@ export default function Programs() {
                 >
                   Apply Now
                 </a>
-                <a
-                  href="#programs-list"
+                <p
+                onClick={()=>{usenavigate('/sys')}}
                   className="inline-flex items-center gap-2 text-white/80 px-4 py-2 rounded-full border border-white/20 hover:bg-white/5 transition"
                 >
-                  Explore Programs
-                </a>
+                explore the Syllabus
+                </p>
               </div>
             </motion.div>
           </div>

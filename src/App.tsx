@@ -37,6 +37,7 @@ import ScholarshipPage from './components/Scholarship';
 import TrainingPlacementPage from './components/Trainingplacement';
 import Gallery from './components/Gallery'
 import Photos from './components/Photos'
+import SyllabusPage from './components/Sylabus';
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -89,6 +90,7 @@ function App() {
                                    <Route path='/tap' element={ <TrainingPlacementPage/> } />
                                        <Route path='/Gallery' element={ <Gallery/> } />
                                            <Route path='/Photos' element={ <Photos/> } />
+                                               <Route path='/sys' element={ <SyllabusPage/> } />
         </Routes>
 
         <Footer />

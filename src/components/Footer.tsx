@@ -1,50 +1,68 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
+import {
+  GraduationCap,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  ArrowUp,
+} from 'lucide-react';
 
 interface LinkItem {
   name: string;
-  href: string;
+  to?: string;
+  isSection?: boolean;
+  anchor?: string;
 }
 
 interface ProgramItem {
   name: string;
-  href: string;
+  to: string;
 }
 
 const Footer = () => {
   const quickLinks: LinkItem[] = [
-    { name: 'About', href: '/program' },
-    { name: 'Facilities', href: '#facilities' },
-    { name: 'Admissions', href: '#admissions' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', anchor: '#about' }, // program page
+    { name: 'Facilities', isSection: true, to: '/lab' }, // section on home
+    { name: 'Admissions', to: '/admission' }, // admissions page
+    { name: 'Contact', isSection: true, anchor: '#contact' }, // section on home
   ];
 
   const programs: ProgramItem[] = [
-    { name: 'Computer Science Engineering', href: '/program' },
-    { name: 'Electronics & Communication', href: '/program/ece' },
-    { name: 'Mechanical Engineering', href: '/program/mech' },
-    { name: 'Civil Engineering', href: '/program/civil' },
-    { name: 'M.Tech Programs', href: '/program/mtech' },
-    { name: 'Ph.D. Programs', href: '/program/phd' },
+    { name: 'Computer Science Engineering', to: '/program' },
+    { name: 'Electronics & Communication', to: '/program' },
+    { name: 'Mechanical Engineering', to: '/program' },
+    { name: 'Civil Engineering', to: '/program' },
+    { name: 'M.Tech Programs', to: '/program' },
+    { name: 'Ph.D. Programs', to: '/program' },
   ];
 
   const socialLinks = [
-    { icon: Facebook, url: 'https://www.facebook.com/profile.php?id=100091800559494&mibextid=ZbWKw', label: 'Facebook' },
+    {
+      icon: Facebook,
+      url: 'https://www.facebook.com/profile.php?id=100091800559494&mibextid=ZbWKw',
+      label: 'Facebook',
+    },
     { icon: Twitter, url: 'https://x.com/dscolleges', label: 'Twitter' },
-    { icon: Instagram, url: 'https://www.instagram.com/dsu_trichy?igsh=MTliYjVocmpuMGJoaQ==', label: 'Instagram' },
-    { icon: Linkedin, url: 'https://www.linkedin.com/school/dhanalakshmisrinivasanuniversity/', label: 'LinkedIn' },
+    {
+      icon: Instagram,
+      url: 'https://www.instagram.com/dsu_trichy?igsh=MTliYjVocmpuMGJoaQ==',
+      label: 'Instagram',
+    },
+    {
+      icon: Linkedin,
+      url: 'https://www.linkedin.com/school/dhanalakshmisrinivasanuniversity/',
+      label: 'LinkedIn',
+    },
   ];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -53,13 +71,18 @@ const Footer = () => {
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
           {/* University Info */}
           <div className="lg:col-span-1">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
+            >
               <div className="flex items-center space-x-2 mb-4">
                 <GraduationCap className="h-8 w-8 text-yellow-400" />
                 <span className="text-xl font-bold">DSU Engineering</span>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Empowering the next generation of engineers with world-class education, 
+                Empowering the next generation of engineers with world-class education,
                 cutting-edge research, and innovative solutions for tomorrow's challenges.
               </p>
             </motion.div>
@@ -68,8 +91,10 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
                 <p className="text-gray-300 text-sm">
-                  Dhanalakshmi Srinivasan University<br />
-                  Perambalur - Trichy Highway<br />
+                  Dhanalakshmi Srinivasan University
+                  <br />
+                  Perambalur - Trichy Highway
+                  <br />
                   Tamil Nadu 621112, India
                 </p>
               </div>
@@ -105,12 +130,20 @@ const Footer = () => {
           </div>
 
           {/* Academic Programs */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="sm:ml-9">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="sm:ml-9"
+          >
             <h4 className="text-lg font-semibold mb-6 text-yellow-400">Academic Programs</h4>
             <ul className="space-y-3">
               {programs.map((program, index) => (
                 <li key={index}>
-                  <Link to={program.href} className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block">
+                  <Link
+                    to={program.to}
+                    className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block"
+                  >
                     {program.name}
                   </Link>
                 </li>
@@ -119,14 +152,33 @@ const Footer = () => {
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="sm:ml-9">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="sm:ml-9"
+          >
             <h4 className="text-lg font-semibold mb-6 text-yellow-400">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <button onClick={() => scrollToSection(link.href)} className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block">
-                    {link.name}
-                  </button>
+                  {link.isSection && link.anchor ? (
+                    // HashLink will navigate to home and then smooth-scroll to anchor
+                    <HashLink
+                      smooth
+                      to={`/#${link.anchor}`}
+                      className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block"
+                    >
+                      {link.name}
+                    </HashLink>
+                  ) : (
+                    <Link
+                      to={link.to || '/'}
+                      className="text-gray-300 hover:text-white transition-colors text-sm hover:translate-x-1 transform duration-200 block"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -141,9 +193,15 @@ const Footer = () => {
               <p>© 2024 Dhanalakshmi Srinivasan University School of Engineering. All rights reserved.</p>
             </div>
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
-              <motion.button onClick={scrollToTop} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="bg-yellow-500 text-gray-900 p-2 rounded-full hover:bg-yellow-400 transition-colors" aria-label="Scroll to top">
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
+              <motion.button
+                onClick={scrollToTop}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="bg-yellow-500 text-gray-900 p-2 rounded-full hover:bg-yellow-400 transition-colors"
+                aria-label="Scroll to top"
+              >
                 <ArrowUp className="h-4 w-4" />
               </motion.button>
             </div>
