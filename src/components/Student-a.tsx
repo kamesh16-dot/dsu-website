@@ -14,7 +14,7 @@ const StudentsAffairs: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            Students' Affairs
+            Student's Affairs
           </h1>
           <p className="text-lg md:text-xl text-white max-w-2xl drop-shadow-md">
             Division of Students' Affairs at Dhanalakshmi Srinivasan University
