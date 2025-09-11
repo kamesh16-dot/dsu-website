@@ -38,6 +38,7 @@ import TrainingPlacementPage from './components/Trainingplacement';
 import Gallery from './components/Gallery'
 import Photos from './components/Photos'
 import SyllabusPage from './components/Sylabus';
+import NotFound from './components/404';
 function App() {
   return (
     <Router basename="/dsu-website/">
@@ -91,6 +92,7 @@ function App() {
                                        <Route path='/Gallery' element={ <Gallery/> } />
                                            <Route path='/Photos' element={ <Photos/> } />
                                                <Route path='/sys' element={ <SyllabusPage/> } />
+                                                 <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />

@@ -1,13 +1,36 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Award, BookOpen, Users } from 'lucide-react';
+import { Mail, Award, BookOpen, Users, X } from 'lucide-react';
+
+const normalize = (str = '') =>
+  String(str || '')
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+
+const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
 
 const Faculty = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, });
+  const isInView = useInView(ref, { once: true });
 
+  const [departmentFilter, setDepartmentFilter] = useState('All');
+  const [positionFilter, setPositionFilter] = useState('All');
+
+  // hoveredFacultyData: { faculty, rect } when a card is hovered
+  const [hoveredFacultyData, setHoveredFacultyData] = useState(null);
+
+  // timer ref to avoid micro-flicker
+  const hideTimerRef = useRef(null);
+
+  // store reference to modal element for pointer checks
+  const modalRef = useRef(null);
+
+  // -------------------------
+  // Your faculty array (kept as you provided)
+  // -------------------------
   const facultyMembers = [
-
     {
       name: 'Dr. V. Sekar',
       position: 'Dean & Professor',
@@ -1062,156 +1085,286 @@ const Faculty = () => {
       experience: '15+ years',
        publications: '70+ Research Papers'
     }
+    // ... you included many more — keep rest as needed ...
   ];
 
+  // Cancel hide timer
+  const cancelHideTimer = () => {
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  };
+
+  // Start hide timer (short)
+  const startHideTimer = (delay = 60) => {
+    cancelHideTimer();
+    hideTimerRef.current = setTimeout(() => {
+      setHoveredFacultyData(null);
+      hideTimerRef.current = null;
+    }, delay);
+  };
+
+  // pointermove safety: closes modal if pointer not over card or modal
+  useEffect(() => {
+    if (!hoveredFacultyData) return;
+
+    const onPointerMove = (e) => {
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (!el) {
+        setHoveredFacultyData(null);
+        return;
+      }
+      const overCard = !!el.closest('[data-faculty-card]');
+      const overModal = !!el.closest('#hover-modal');
+      if (!overCard && !overModal) {
+        cancelHideTimer();
+        setHoveredFacultyData(null);
+      }
+    };
+
+    document.addEventListener('pointermove', onPointerMove);
+    return () => document.removeEventListener('pointermove', onPointerMove);
+  }, [hoveredFacultyData]);
+
+  useEffect(() => {
+    return () => {
+      cancelHideTimer();
+    };
+  }, []);
+
+  // Departments & Positions (normalized lists)
+  const departments = useMemo(() => {
+    const map = new Map();
+    let hasUnknown = false;
+    facultyMembers.forEach((f) => {
+      const raw = (f.department ?? '').trim();
+      if (!raw) {
+        hasUnknown = true;
+        return;
+      }
+      const key = normalize(raw);
+      if (!map.has(key)) map.set(key, raw);
+    });
+    const items = ['All', ...Array.from(map.values()).sort((a, b) => a.localeCompare(b))];
+    if (hasUnknown) items.push('Unknown');
+    return items;
+  }, [facultyMembers]);
+
+  const positions = useMemo(() => {
+    const map = new Map();
+    let hasUnknown = false;
+    facultyMembers.forEach((f) => {
+      const raw = (f.position ?? '').trim();
+      if (!raw) {
+        hasUnknown = true;
+        return;
+      }
+      const key = normalize(raw);
+      if (!map.has(key)) map.set(key, raw);
+    });
+    const items = ['All', ...Array.from(map.values()).sort((a, b) => a.localeCompare(b))];
+    if (hasUnknown) items.push('Unknown');
+    return items;
+  }, [facultyMembers]);
+
+  // Filtering logic (keeps your robust normalization)
+  const filteredFaculty = useMemo(() => {
+    const deptFilterNorm = departmentFilter === 'All' ? null : departmentFilter === 'Unknown' ? '__unknown__' : normalize(departmentFilter);
+    const posFilterNorm = positionFilter === 'All' ? null : positionFilter === 'Unknown' ? '__unknown__' : normalize(positionFilter);
+
+    return facultyMembers.filter((f) => {
+      const rawDept = (f.department ?? '').trim();
+      const rawPos = (f.position ?? '').trim();
+      const deptNorm = rawDept ? normalize(rawDept) : null;
+      const posNorm = rawPos ? normalize(rawPos) : null;
+
+      let deptMatch = true;
+      if (deptFilterNorm === '__unknown__') {
+        deptMatch = !deptNorm;
+      } else if (deptFilterNorm) {
+        deptMatch = deptNorm ? deptNorm.includes(deptFilterNorm) || deptFilterNorm.includes(deptNorm) : false;
+      }
+
+      let posMatch = true;
+      if (posFilterNorm === '__unknown__') {
+        posMatch = !posNorm;
+      } else if (posFilterNorm) {
+        posMatch = posNorm ? posNorm.includes(posFilterNorm) || posFilterNorm.includes(posNorm) : false;
+      }
+
+      return deptMatch && posMatch;
+    });
+  }, [facultyMembers, departmentFilter, positionFilter]);
+
   const stats = [
-    { icon: Users, label: 'Faculty Members', value: '150+' },
+    { icon: Users, label: 'Faculty Members', value: `${filteredFaculty.length}` },
     { icon: Award, label: 'Ph.D. Holders', value: '75+' },
     { icon: BookOpen, label: 'Research Publications', value: '500+' },
     { icon: Mail, label: 'Industry Experience', value: '15+ Years' }
   ];
 
- const containerVariants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  // compute modal position (near card) and clamp within viewport
+  const computeModalStyle = (rect) => {
+    if (!rect) return { top: '50%', left: '50%', transform: 'translate(-50%,-50%)' };
+    const padding = 8;
+    const modalWidth = Math.min(360, window.innerWidth - 32); // approximate
+    const topBelow = rect.bottom + padding;
+    const topAbove = rect.top - padding - 320; // approx modal height
+    let top = topBelow;
+    // if not enough space below, open above
+    if (top + 320 > window.innerHeight) top = Math.max(padding, topAbove);
+    // prefer left aligned with card left, but clamp
+    const left = clamp(rect.left, padding, window.innerWidth - modalWidth - padding);
+    return { position: 'fixed', top: `${top}px`, left: `${left}px`, width: `${modalWidth}px`, zIndex: 9999 };
   };
 
   return (
-    <section id="faculty" className="py-48 bg-gray-500 " ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="faculty" className="bg-gray-50" ref={ref}>
+      {/* Hero */}
+      <div className="relative w-full h-56 md:h-72 lg:h-96">
+        <img
+          src="https://t4.ftcdn.net/jpg/03/58/79/77/360_F_358797751_Gh6SS9Omu05oSC2Kv09PrUTlWTV8QErX.jpg"
+          alt="Faculty Hero"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mt-32 text-white drop-shadow-lg text-center max-w-4xl">
+            Meet Our School of Engineering & Technology Faculties
+          </h1>
+        </div>
+      </div>
 
-        {/* HERO IMAGE (added) */}
-        <div className="relative w-full h-56 md:h-72 rounded-2xl overflow-hidden ">
-          <img
-            src="https://img.freepik.com/free-vector/gradient-blue-background_23-2149337039.jpg?semt=ais_hybrid&w=740&q=80"
-            alt="Faculty Hero"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-transparent" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-2xl md:text-4xl font-bold text-white drop-shadow-lg">
-              Meet Our School of Engineering & Technology Faculties
-            </h1>
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-6" />
+
+        {/* Filters Row */}
+        <div className="mb-6">
+          <div className="w-full flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="flex flex-col w-full sm:w-auto">
+              <label htmlFor="department" className="text-sm font-medium text-gray-700 mb-2 sm:mb-1">Department</label>
+              <select id="department" value={departmentFilter} onChange={(e) => setDepartmentFilter(e.target.value)} className="w-full sm:w-64 bg-white border border-gray-200 rounded-md px-3 py-2 shadow-sm">
+                {departments.map((d) => <option key={d} value={d}>{d || 'Unknown'}</option>)}
+              </select>
+            </div>
+
+            <div className="flex flex-col w-full sm:w-auto">
+              <label htmlFor="position" className="text-sm font-medium text-gray-700 mb-2 sm:mb-1">Position</label>
+              <select id="position" value={positionFilter} onChange={(e) => setPositionFilter(e.target.value)} className="w-full sm:w-64 bg-white border border-gray-200 rounded-md px-3 py-2 shadow-sm">
+                {positions.map((p) => <option key={p} value={p}>{p || 'Unknown'}</option>)}
+              </select>
+            </div>
+
+            <div className="mt-3 sm:mt-6 text-sm text-gray-600">
+              Showing <span className="font-semibold text-gray-800">{filteredFaculty.length}</span> results
+            </div>
           </div>
         </div>
-        {/* END HERO IMAGE */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 bg-gray"
-        >
-         
-          
-        </motion.div>
+        {/* Stats Row */}
+        <div className="mb-6 lg:p-7">
+          <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.1 }} className="w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 h-40">
+              {stats.map((stat, i) => (
+                <motion.div key={i} initial={{ scale: 0.95, opacity: 0 }} animate={isInView ? { scale: 1, opacity: 1 } : {}} transition={{ duration: 0.35, delay: 0.15 + i * 0.05 }} className="bg-white rounded-lg shadow-sm flex flex-col lg:font-bold lg:text-5xl items-center justify-center min-h-[72px]">
+                  <stat.icon className="h-6 w-6 text-blue-600 mb-1" />
+                  <div className="text-sm font-semibold text-gray-800 leading-none">{stat.value}</div>
+                  <div className="text-xs text-gray-500">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
-        {/* Faculty Statistics */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
-        >
-          {stats.map((stat, index) => (
+        {/* Faculty Grid */}
+        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          {filteredFaculty.map((faculty, idx) => (
             <motion.div
-              key={index}
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow"
+              key={idx}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              data-faculty-card
+              onMouseEnter={(e) => {
+                cancelHideTimer();
+                // compute bounding rect of the card to position modal
+                const rect = e.currentTarget.getBoundingClientRect();
+                setHoveredFacultyData({ faculty, rect });
+              }}
+              onMouseLeave={() => {
+                startHideTimer(60);
+              }}
+              onFocus={(e) => {
+                // keyboard focus: behave same as hover
+                cancelHideTimer();
+                const rect = e.currentTarget.getBoundingClientRect();
+                setHoveredFacultyData({ faculty, rect });
+              }}
+              onBlur={() => startHideTimer(60)}
+              className="relative group bg-white rounded-xl overflow-hidden shadow hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer focus:outline-none"
+              tabIndex={0}
+              aria-label={`Faculty card: ${faculty.name}`}
             >
-              <stat.icon className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-gray-800 mb-1">{stat.value}</div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
+              {/* Uniform image */}
+              <div className="w-full h-60 bg-gray-100 overflow-hidden">
+                <img src={faculty.image} alt={faculty.name} className="w-full h-full object-cover rounded-t-xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+              </div>
+
+              <div className="p-3 sm:p-4 flex flex-col flex-1">
+                <div className="mb-2 min-h-[3.25rem]">
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-800 leading-tight line-clamp-2">{faculty.name}</h3>
+                  <p className="text-blue-600 text-xs sm:text-sm font-medium mt-1">{faculty.position}</p>
+                </div>
+
+                {faculty.department && (
+                  <div className="mt-auto mb-2">
+                    <span className="inline-block bg-blue-50 text-blue-600 text-[0.65rem] xs:text-xs px-2 py-1 rounded-full">{faculty.department}</span>
+                  </div>
+                )}
+              </div>
             </motion.div>
           ))}
         </motion.div>
-
-       
-       {/* Faculty Grid */}
-<motion.div
-  variants={containerVariants}
-  initial="hidden"
-  animate={isInView ? "visible" : "hidden"}
-  className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-16"
->
-  {facultyMembers.map((faculty, index) => (
-    <motion.div
-      key={index}
-      variants={itemVariants}
-      whileHover={{ scale: 1.03 }}
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full"
-    >
-      {/* Image with responsive height */}
-      <div className="aspect-square overflow-hidden">
-        <img
-          src={faculty.image}
-          alt={faculty.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-          loading="lazy"
-        />
       </div>
-      
-      {/* Content area with responsive padding */}
-      <div className="p-3 sm:p-4 flex-grow flex flex-col">
-        {/* Name and position with responsive text */}
-        <div className="mb-1 sm:mb-2 min-h-[3.5rem]">
-          <h3 className="text-sm sm:text-base font-semibold text-gray-800 leading-tight line-clamp-2">
-            {faculty.name}
-          </h3>
-          <p className="text-blue-600 text-xs sm:text-sm font-medium mt-1">
-            {faculty.position}
-          </p>
-        </div>
 
-        {/* Department tag - responsive size */}
-        {faculty.department && (
-          <div className="mt-auto mb-2">
-            <span className="inline-block bg-blue-50 text-blue-600 text-[0.6rem] xs:text-xs px-2 py-1 rounded-full">
-              {faculty.department}
-            </span>
-          </div>
-        )}
+      {/* Hover Modal (positioned ne ar card) */}
+      {hoveredFacultyData && (
+        <div
+          id="hover-modal"
+          ref={modalRef}
+          // keep modal open while pointer is over modal
+          onMouseEnter={() => cancelHideTimer()}
+          onMouseLeave={() => startHideTimer(60)}
+          style={computeModalStyle(hoveredFacultyData.rect)}
+          aria-live="polite"
+        >
+          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 max-w-full">
+            <button onClick={() => setHoveredFacultyData(null)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-700" aria-label="Close">
+              <X className="w-5 h-5" />
+            </button>
 
-        {/* Experience and publications - responsive icons */}
-        <div className="space-y-1 text-xs xs:text-sm">
-          <div className="flex items-center text-gray-600">
-            <svg className="w-3 h-3 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>{faculty.experience}</span>
-          </div>
-          <div className="flex items-center text-gray-600">
-            <svg className="w-3 h-3 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <span>{faculty.publications}</span>
+            <div className="w-full flex items-center justify-center bg-gray-100 rounded-lg mb-3">
+              <img src={hoveredFacultyData.faculty.image} alt={hoveredFacultyData.faculty.name} className="max-h-80 w-auto object-contain rounded-lg" />
+            </div>
+
+            <h2 className="text-lg font-bold text-gray-800 mb-1">{hoveredFacultyData.faculty.name}</h2>
+            <p className="text-blue-600 font-medium mb-2">{hoveredFacultyData.faculty.position}</p>
+            <p className="text-sm text-gray-600 mb-1">Department: {hoveredFacultyData.faculty.department || 'N/A'}</p>
+            <p className="text-sm text-gray-600 mb-1">Experience: {hoveredFacultyData.faculty.experience}</p>
+            <p className="text-sm text-gray-600">Publications: {hoveredFacultyData.faculty.publications}</p>
           </div>
         </div>
-      </div>
-    </motion.div>
-  ))}
-</motion.div>
-        {/* Research Excellence */}
-        
-      </div>
+      )}
     </section>
   );
 };

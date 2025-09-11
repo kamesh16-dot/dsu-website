@@ -43,7 +43,7 @@ const CulturalEventsPage = () => {
   const culturalEvents: CulturalEvent[] = [
     {
       id: 1,
-      title: 'Ananthara',
+      title: 'Ananthara-Event',
       description:
         'Join us for a spectacular day of traditional Indian music performances and cultural celebrations on campus.',
       date: '2025-10-15',
@@ -56,7 +56,7 @@ const CulturalEventsPage = () => {
     },
     {
       id: 2,
-      title: 'DJ Night',
+      title: 'DJ Night-Event',
       description:
         'Watch our dance teams compete in vibrant traditional and contemporary Indian styles.',
       date: '2025-10-22',
@@ -68,19 +68,19 @@ const CulturalEventsPage = () => {
     },
     {
       id: 3,
-      title: 'Pongal',
+      title: 'Pongal-Event',
       description:
         'Showcasing the creative works of our students inspired by Indian heritage and modern art.',
       date: '2025-10-29',
       time: '10:00 AM',
       venue: 'Art Gallery',
       image:
-        'https://thf.bing.com/th/id/OIP.Hb7tjl09rHwEPk8AIPsr-gHaHa?w=166&h=180&c=7&r=0&o=7&cb=thfc1&pid=1.7&rm=3',
+        'https://srichants.in/wp-content/uploads/2024/12/Pongal-Festival.jpg',
      
     },
     {
       id: 4,
-      title: 'Onam',
+      title: 'Onam-Event',
       description:
         'Our theater group presents an original play drawing from Indian folklore and contemporary themes.',
       date: '2025-11-05',
@@ -104,14 +104,14 @@ const CulturalEventsPage = () => {
     },
     {
       id: 6,
-      title: 'Christmas',
+      title: 'Christmas-Event',
       description:
         'Taste dishes from around India and the world, celebrating our diverse campus community.',
       date: '2025-11-19',
       time: '12:00 PM',
       venue: 'College Green',
       image:
-        'https://tse4.mm.bing.net/th/id/OIP.GTr4ecUzzMG3MmSdoVhf4wHaH0?cb=thfc1&pid=ImgDet&w=203&h=214&c=7&o=7&rm=3',
+        'https://upload.wikimedia.org/wikipedia/commons/8/8f/NativityChristmasLights2.jpg',
       
     }
   ];
